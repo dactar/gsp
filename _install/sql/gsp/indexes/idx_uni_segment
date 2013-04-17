@@ -1,0 +1,1 @@
+CREATE UNIQUE INDEX idx_uni_segment ON segment(code,appl_dict_id);

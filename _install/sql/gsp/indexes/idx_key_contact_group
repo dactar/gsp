@@ -1,0 +1,1 @@
+CREATE INDEX idx_key_contact_group ON contact(group_dict_id);

@@ -1,0 +1,17 @@
+/* DHTMLX WINDOWS */
+
+.dhtmlx_skin_dhx_skyblue div.dhtmlx_window_active div.dhtmlx_wins_title {
+        left: 10px;
+}
+
+.dhtmlx_skin_dhx_skyblue div.dhtmlx_window_inactive div.dhtmlx_wins_title {
+        left: 10px;
+        color: #000000;
+        font-weight: normal;
+}
+
+.dhtmlx_skin_dhx_skyblue div.dhtmlx_wins_icon {
+        top: 3px;
+        width: 24px;
+        height: 23px;
+}

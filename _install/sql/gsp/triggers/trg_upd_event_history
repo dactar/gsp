@@ -1,0 +1,5 @@
+CREATE TRIGGER trg_upd_event_history AFTER UPDATE ON event_history FOR EACH ROW
+BEGIN
+UPDATE event_history SET last_user_id = (SELECT id from user WHERE code = getuser()) WHERE old.id = id ;
+UPDATE event_history SET last_modif_d = (SELECT datetime ('now','localtime')) WHERE old.id = id ;
+END;

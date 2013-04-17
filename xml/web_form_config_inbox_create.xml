@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<items>
+<item type="block" inputWidth="auto">
+	<item type="settings" position="label-left" labelWidth="160" inputWidth="220"/>
+	<item type="fieldset" name="dat1" inputWidth="auto" label="Créer une nouvelle configuration mail">
+	<item type="block" inputWidth="auto">
+		<item type="hidden" name="id"/>
+		<item type="fieldset" name="dat2" inputWidth="auto" label="Principal">
+			<item type="block" inputWidth="auto">
+				<item type="input" value="" width="120" validate="NotEmpty" name="inbox_code" label="Code"/>
+				<item type="input" value="" validate="NotEmpty" name="inbox_description" label="Decription"/>
+
+		                <item type="block" inputWidth="auto">
+       					<item type="label" label="Actif"/>
+                       			<item type="newcolumn"/>
+                       			<item type="radio" name="active_f" value="0" inputWidth="auto" labelWidth="40" label="Non"/>
+                       			<item type="newcolumn"/>
+                       			<item type="radio" name="active_f" value="1" inputWidth="auto" labelWidth="40" checked="true" label="Oui"/>
+                		</item>
+		                <item type="block" inputWidth="auto">
+       					<item type="label" label="Automatique"/>
+                       			<item type="newcolumn"/>
+                       			<item type="radio" name="automatic_f" value="0" inputWidth="auto" labelWidth="40" label="Non"/>
+                       			<item type="newcolumn"/>
+                       			<item type="radio" name="automatic_f" value="1" inputWidth="auto" labelWidth="40" checked="true" label="Oui"/>
+                		</item>
+		                <item type="block" inputWidth="auto">
+       					<item type="label" label="Principal"/>
+                       			<item type="newcolumn"/>
+                       			<item type="radio" name="default_f" value="0" inputWidth="auto" labelWidth="40" label="Non"/>
+                       			<item type="newcolumn"/>
+                       			<item type="radio" name="default_f" value="1" inputWidth="auto" labelWidth="40" checked="true" label="Oui"/>
+                		</item>
+			</item>
+		</item>
+		<item type="newcolumn"/>	
+		<item type="fieldset" name="dat4" inputWidth="auto" label="Serveur mail : Connexion">
+			<item type="block" inputWidth="auto">
+				<item type="input" value="" validate="NotEmpty" name="mailbox_server" label="Serveur"/>
+				<item type="select" value="" validate="[^0]" name="mailbox_server_protocol_id" label="Protocole"/>
+				<item type="input" value="" width="50" validate="NotEmpty" name="mailbox_server_port" label="Port"/>
+				<item type="input" value="" validate="NotEmpty" name="user_code" label="Utilisateur"/>
+				<item type="input" value="" width="120" validate="NotEmpty" name="password" label="Mot de passe"/>
+			</item>
+		</item>
+	</item>
+	<item type="block" inputWidth="auto">	
+		<item type="fieldset" name="dat3" inputWidth="auto" label="Base de donnée des mails entrants">
+			<item type="block" inputWidth="auto">
+				<item type="input" value="" validate="NotEmpty" name="inbox_db_path" label="Repertoire"/>
+				<item type="input" value="" width="120" validate="NotEmpty" name="inbox_db_table" label="Table"/>
+			</item>
+		</item>
+		<item type="newcolumn"/>
+		<item type="fieldset" name="dat5" inputWidth="auto" label="Serveur mail : Dossiers">
+			<item type="block" inputWidth="auto">
+                                <item type="block" inputWidth="auto">
+                                        <item type="label" label="Lecture seule"/>
+                                        <item type="newcolumn"/>
+                                        <item type="radio" name="mailbox_readonly_f" value="0" inputWidth="auto" labelWidth="40" label="Non"/>
+                                        <item type="newcolumn"/>
+                                        <item type="radio" name="mailbox_readonly_f" value="1" inputWidth="auto" labelWidth="40" checked="true" label="Oui"/>
+                                </item>
+
+				<item type="input" value="" name="mailbox_treated_folder" label="Courrier traité"/>
+			</item>
+		</item>
+	</item>
+	<item type="block" inputWidth="auto">
+		<item type="label" label="" labelWidth="396"/>
+		<item type="newcolumn"/>
+		<item type="button" name="insert" value="Sauvegarder"/>
+	</item>
+	</item>
+</item>
+</items>

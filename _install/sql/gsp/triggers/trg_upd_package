@@ -1,0 +1,5 @@
+CREATE TRIGGER trg_upd_package AFTER UPDATE ON package FOR EACH ROW
+BEGIN
+UPDATE package SET last_user_id = (SELECT id from user WHERE code = getuser()) WHERE old.id = id ;
+UPDATE package SET last_modif_d = (SELECT datetime ('now','localtime')) WHERE old.id = id ;
+END;

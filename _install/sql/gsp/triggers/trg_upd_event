@@ -1,0 +1,11 @@
+CREATE TRIGGER trg_upd_event AFTER UPDATE ON event FOR EACH ROW 
+BEGIN 
+UPDATE event SET code = '#' || id WHERE old.id = id ; 
+UPDATE event SET closed_d = NULL WHERE closed_d isnull=0 and (select parent_code from dict_vw where dict_id = status_dict_id) = 'open' and old.id = id ; 
+UPDATE event SET closed_d = (SELECT datetime ('now','localtime')) WHERE closed_d isnull and (select parent_code from dict_vw where dict_id = status_dict_id) = 'closed' and old.id = id ; 
+UPDATE event SET planif_d = new.asked_d where old.planif_d isnull and old.asked_d isnull and new.asked_d isnull = 0 and old.id = id ;
+INSERT into event_history (event_id, type_dict_id, date_d, status_dict_id) SELECT new.id,(SELECT dict_id from dict_vw where code = 'statut' and parent_code = 'historique'),datetime ('now','localtime'),new.status_dict_id WHERE old.status_dict_id != new.status_dict_id and old.id = new.id;
+INSERT into event_history (event_id, type_dict_id, date_d, priority_dict_id) SELECT new.id,(SELECT dict_id from dict_vw where code = 'priority' and parent_code = 'historique'),datetime ('now','localtime'),new.priority_dict_id WHERE old.priority_dict_id != new.priority_dict_id and old.id = new.id;
+UPDATE event SET last_user_id = (SELECT id from user WHERE code = getuser()) WHERE old.id = id ;
+UPDATE event SET last_modif_d = (SELECT datetime ('now','localtime')) WHERE old.id = id ;
+END;

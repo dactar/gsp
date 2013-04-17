@@ -1,0 +1,110 @@
+<?xml version="1.0"?>
+<items>
+<item type="block" inputWidth="auto">
+	<item type="settings" position="label-left" labelWidth="120" inputWidth="180"/>
+	<item type="fieldset" name="dat1" inputWidth="auto" label="Principal">
+		<item type="hidden" name="id"/>
+		<item type="hidden" name="plugin_string"/>
+		<item type="block" inputWidth="auto">
+			<item type="input" value="" name="code" label="Code" readonly="true" width="110"/>
+			<item type="input" value="" name="summary" inputWidth="550" label="Résumé"/>
+		</item>
+		<item type="block" inputWidth="auto">
+                       	<item type="select" name="status" label="Statut" width="112"/>
+			<item type="newcolumn"/>
+			<item type="label" labelWidth="150"/>
+			<item type="newcolumn"/>
+                       	<item type="select" name="type" labelWidth="160" label="Type d'événement" width="114"/>
+		</item>
+		<item type="block" inputWidth="auto">
+			<item type="select" name="project_id" label="Projet" width="250"/>
+			<item type="newcolumn"/>
+			<item type="label" labelWidth="13"/>
+			<item type="newcolumn"/>
+			<item type="hidden" name="parent_id"/>
+			<item type="input" value="" name="parent_code" labelWidth="160" label="Evénement parent" width="111"/>
+		</item>
+	</item>
+	<item type="newcolumn" offset="10"/>
+	<item type="fieldset" className="fs_box" name="dat4" inputWidth="auto" label="Codes externes" width="125">
+		<item type="label" labelWidth="15"/>
+                <item type="newcolumn"/>
+		<item type="button" value="..."/>
+	</item>
+</item>
+<item type="block" inputWidth="auto">
+	<item type="settings" position="label-left" labelWidth="120" inputWidth="180"/>
+	<item type="fieldset" name="dat2" inputWidth="auto" label="Segmentation" width="400">
+		<item type="block" inputWidth="auto">
+			<item type="select" name="appl" label="Application"/>
+		</item>
+		<item type="block" inputWidth="auto">
+			<item type="hidden" name="segment_id"/>
+	        	<item type="input" name="segment_code" label="Objet"/>
+                	<item type="newcolumn"/>
+                	<item type="button" name="segment_list" value="..."/>
+		</item>	
+		<item type="block" inputWidth="auto">
+			<item type="hidden" name="package_id"/>
+                	<item type="input" name="package_code" label="Version"/>
+                	<item type="newcolumn"/>
+                	<item type="button" name="package_list" value="..."/>
+		</item>	
+	</item>
+	<item type="fieldset" name="dat3" inputWidth="auto" label="Dates" width="400">
+		<item type="calendar" name="opened_d" label="Ouverture" readonly="true" serverDateFormat="%Y-%m-%d %H:%i:%s" dateFormat="%d.%m.%Y %H:%i:%s" calendarPosition="right"/>
+		<item type="calendar" name="logged_d" label="Enregistrement" readonly="true" serverDateFormat="%Y-%m-%d %H:%i:%s" dateFormat="%d.%m.%Y %H:%i:%s" calendarPosition="right"/>
+		<item type="calendar" name="asked_d" label="Délai demandé" enableTime="true" serverDateFormat="%Y-%m-%d %H:%i:%s" dateFormat="%d.%m.%Y %H:%i:%s" calendarPosition="right"/>
+		<item type="calendar" name="planif_d" label="Planification" enableTime="true" serverDateFormat="%Y-%m-%d %H:%i:%s" dateFormat="%d.%m.%Y %H:%i:%s" calendarPosition="right"/>
+		<item type="calendar" name="closed_d" label="Fermeture" serverDateFormat="%Y-%m-%d %H:%i:%s" dateFormat="%d.%m.%Y %H:%i:%s" calendarPosition="right"/>
+	</item>
+	<item type="newcolumn" offset="10"/>
+	<item type="fieldset" name="dat5" inputWidth="auto" label="Qualification">
+		<item type="block" inputWidth="auto">
+			<item type="fieldset" name="severity_box" inputWidth="auto" width="190" label="Degré d'importance">
+				<item type="select" name="severity" label="" width="112"/>
+			</item>
+			<item type="newcolumn"/>
+			<item type="fieldset" name="priority_box" inputWidth="auto" width="190" label="Degré d'urgence">
+				<item type="select" name="priority" label="" width="112"/>
+			</item>
+		</item>
+		<item type="block" inputWidth="auto">
+                        <item type="label" labelWidth="30"/>
+                        <item type="newcolumn"/>
+			<item type="checkbox" name="prod_f" position="label-right" labelAlign="center" label="Production"/>
+			<item type="newcolumn"/>
+			<item type="label" labelWidth="30"/>
+			<item type="newcolumn"/>
+			<item type="checkbox" name="blocking_f" position="label-right" labelAlign="center" label="Bloquant"/>
+		</item>
+	</item>
+	<item type="fieldset" name="dat6" inputWidth="auto" label="Intervenants">
+		<item type="block" inputWidth="auto">
+			<item type="hidden" name="owner_id"/>
+			<item type="input" name="owner_name" label="Suivi"/>
+			<item type="newcolumn"/>
+			<item type="button" name="owner_list" value="..."/>
+			<item type="newcolumn"/>
+			<item type="button" value="A"/>
+			<item type="newcolumn"/>
+			<item type="button" value="X"/>	
+		</item>
+
+		<item type="block" inputWidth="auto">
+			<item type="hidden" name="contact_id"/>	
+			<item type="input" name="contact_name" label="Contact"/>
+			<item type="newcolumn"/>
+			<item type="button" name="contact_list" value="..."/>
+			<item type="newcolumn"/>
+			<item type="button" value="A"/>
+		</item>
+	</item>
+	<item type="fieldset" name="dat7" inputWidth="auto" width="452" label="Remarque">
+		<item type="input" name="remark" width="400" label=""/>
+	</item>
+</item>
+<item type="block" inputWidth="auto">
+        <item type="button" name="edit" value="Sauvegarder"/>
+</item>
+</items>

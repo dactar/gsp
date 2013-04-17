@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<items>
+<item type="block" inputWidth="auto">
+	<item type="settings" position="label-left" labelWidth="120" inputWidth="180"/>
+	<item type="fieldset" name="dat1" inputWidth="auto" label="Modifier un utilisateur">
+		<item type="block" inputWidth="auto">
+			<item type="input" value="" validate="NotEmpty" name="code" label="Code"/>
+			<item type="input" value="" validate="NotEmpty" name="name" label="Nom"/>
+			<item type="input" value="" validate="NotEmpty" name="alias" label="Alias" />
+		</item>
+		<item type="block" inputWidth="auto">
+			<item type="hidden" name="contact_id"/>
+			<item type="input" value="" name="CONTACT_CODE" label="Contact" readonly="true"/>
+			<item type="newcolumn"/>
+			<item type="button" name="contact_search" value="..."/>
+		</item>
+		<item type="block" inputWidth="auto">
+			<item type="input" value="" name="CONTACT_NAME" label="Nom" readonly="true"/>
+			<item type="input" value="" name="CONTACT_PHONE" label="Téléphone" readonly="true"/>
+			<item type="input" value="" name="CONTACT_EMAIL" label="E-Mail" inputWidth="320" readonly="true"/>
+		</item>
+		<item type="block" inputWidth="auto">
+			<item type="label" label="Administrateur"/>
+			<item type="newcolumn"/>
+                        <item type="radio" name="admin_f" value="0" inputWidth="auto" labelWidth="40" checked="true" label="Non"/>
+			<item type="newcolumn"/>
+                        <item type="radio" name="admin_f" value="1" inputWidth="auto" labelWidth="40" label="Oui"/>
+		</item>
+		<item type="block" inputWidth="auto">
+                        <item type="label" label="Actif"/>
+			<item type="newcolumn"/>
+                        <item type="radio" name="active_f" value="0" inputWidth="auto" labelWidth="40" label="Non"/>
+			<item type="newcolumn"/>
+                        <item type="radio" name="active_f" value="1" inputWidth="auto" labelWidth="40" checked="true" label="Oui"/>
+                </item>
+
+		<item type="block" inputWidth="auto">
+			<item type="label" label=""/>
+			<item type="newcolumn"/>
+			<item type="button" name="edit" value="Sauvegarder"/>
+		</item>
+		<item type="template" name="last_modif" label="Dernière modification" className="I3"/>
+	</item>
+</item>
+</items>

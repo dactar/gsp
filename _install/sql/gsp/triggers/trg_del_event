@@ -1,0 +1,6 @@
+CREATE TRIGGER trg_del_event BEFORE DELETE ON event FOR EACH ROW
+BEGIN
+      DELETE from event_history WHERE event_id = OLD.id;
+      DELETE from event_history_file WHERE event_id = OLD.id;
+      DELETE from event_ext_code WHERE event_id = OLD.id;
+END;

@@ -1,0 +1,5 @@
+CREATE TRIGGER trg_upd_contact AFTER UPDATE ON contact FOR EACH ROW
+BEGIN
+UPDATE contact SET last_user_id = (SELECT id from user WHERE code = getuser()) WHERE old.id = id ;
+UPDATE contact SET last_modif_d = (SELECT datetime ('now','localtime')) WHERE old.id = id ;
+END;

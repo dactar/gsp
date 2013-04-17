@@ -1,0 +1,8 @@
+CREATE TRIGGER trg_ins_event_history AFTER INSERT ON event_history FOR EACH ROW
+BEGIN
+UPDATE event_history SET date_d = (SELECT datetime ('now','localtime')) where date_d isnull and new.id = id ;
+UPDATE event SET opened_d = (SELECT date from event_history_vw where id = new.id and type_code = 'description') where id = new.event_id and new.event_id = (SELECT event_id from event_history_vw where id = new.id and type_code = 'description');
+UPDATE event SET status_dict_id = (SELECT status_id from event_history_vw where id = new.id and type_code IN ('note','retour')) where id = new.event_id and new.type_dict_id = (SELECT type_id from event_history_vw where id = new.id and type_code IN ('note','retour'));
+UPDATE event_history SET last_user_id = (select id from user where code = getuser()) where new.id = id ;
+UPDATE event_history SET last_modif_d = (SELECT datetime ('now','localtime')) where new.id = id ;
+END;

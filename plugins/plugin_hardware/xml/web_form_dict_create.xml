@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<items>
+<item type="block" inputWidth="auto">
+	<item type="settings" position="label-left" labelWidth="150" inputWidth="180"/>
+	<item type="fieldset" name="dat2" inputWidth="auto" label="Créer un attribut">
+	<item type="hidden" name="NATURE" value="attribute"/>
+		<item type="block" inputWidth="auto">
+			<item type="select" value="" validate="NotEmpty" inputWidth="100" name="parent_dict_id" label="Type"/>
+			<item type="input" value="" validate="NotEmpty" inputWidth="150" name="code" label="Code"/>
+			<item type="input" value="" validate="NotEmpty" inputWidth="250" name="description" label="Description"/>
+		</item>
+                <item type="block" inputWidth="auto">
+                        <item type="label" label="Actif"/>
+                        <item type="newcolumn"/>
+                        <item type="radio" name="active_f" value="0" inputWidth="auto" labelWidth="40" label="Non"/>
+                        <item type="newcolumn"/>
+                        <item type="radio" name="active_f" value="1" inputWidth="auto" labelWidth="40" checked="true" label="Oui"/>
+                </item>
+		<item type="block" inputWidth="auto">
+			<item type="input" value="" validate="NotEmpty" inputWidth="50" name="rank_n" label="Rang"/>
+		</item>
+		<item type="block" inputWidth="auto">
+			<item type="label" label=""/>
+			<item type="newcolumn"/>
+			<item type="button" name="insert" value="Sauvegarder"/>
+		</item>
+	</item>
+</item>
+</items>

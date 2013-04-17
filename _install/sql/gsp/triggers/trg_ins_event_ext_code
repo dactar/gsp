@@ -1,0 +1,7 @@
+CREATE TRIGGER trg_ins_event_ext_code AFTER INSERT ON event_ext_code FOR EACH ROW
+BEGIN
+UPDATE event_ext_code SET main_f = 1 WHERE new.id = id ;
+UPDATE event_ext_code SET main_f = 0 WHERE main_f = 1 and new.event_id = event_id and new.id != id;
+UPDATE event_ext_code SET last_user_id = (select id from user where code = getuser()) WHERE new.id = id ;
+UPDATE event_ext_code SET last_modif_d = (SELECT datetime ('now','localtime')) WHERE new.id = id ;
+END;

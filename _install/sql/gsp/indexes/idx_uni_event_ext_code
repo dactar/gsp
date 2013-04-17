@@ -1,0 +1,1 @@
+CREATE UNIQUE INDEX idx_uni_event_ext_code ON event_ext_code(event_id,code,type_dict_id);

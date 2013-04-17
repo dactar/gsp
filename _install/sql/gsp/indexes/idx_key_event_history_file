@@ -1,0 +1,1 @@
+CREATE INDEX idx_key_event_history_file ON event_history_file(event_id,event_history_id);

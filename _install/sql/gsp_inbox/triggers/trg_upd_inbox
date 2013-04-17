@@ -1,0 +1,5 @@
+CREATE TRIGGER trg_upd_inbox AFTER UPDATE ON inbox FOR EACH ROW
+BEGIN
+UPDATE inbox SET last_modif_d = (SELECT datetime ('now','localtime')) WHERE old.id = id ;
+UPDATE inbox SET locked_f = 0 WHERE (treated_f = 1 OR hidden_f = 1) AND old.id = id;
+END;

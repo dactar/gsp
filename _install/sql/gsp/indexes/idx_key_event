@@ -1,0 +1,4 @@
+CREATE INDEX idx_key_event ON event(parent_id);
+CREATE INDEX idx_key_event_opened_d ON event(opened_d);
+CREATE INDEX idx_key_event_logged_d ON event(logged_d);
+CREATE INDEX idx_key_event_closed_d ON event(closed_d); 

@@ -1,0 +1,1 @@
+CREATE UNIQUE INDEX idx_uni_config_inbox ON config_inbox ( inbox_code );

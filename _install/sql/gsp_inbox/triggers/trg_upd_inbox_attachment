@@ -1,0 +1,4 @@
+CREATE TRIGGER trg_upd_inbox_attachment AFTER UPDATE ON inbox_attachment FOR EACH ROW
+BEGIN
+UPDATE inbox_attachment SET last_modif_d = (SELECT datetime ('now','1 hours')) WHERE old.id = id ;
+END;

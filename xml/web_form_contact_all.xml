@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<items>
+<item type="block" inputWidth="auto">
+	<item type="settings" position="label-left" labelWidth="120" inputWidth="180"/>
+	<item type="fieldset" name="dat1" inputWidth="auto" label="Position organisationnelle">
+		<item type="block" inputWidth="auto">
+			<item type="hidden" name="SEL_ORGA_ID"/>
+			<item type="input" value="" name="SEL_ORGA_CODE" label="Code" readonly="true"/>
+			<item type="input" value="" name="SEL_ORGA_DESC" inputWidth="260" label="Description" readonly="true"/>
+		</item>
+		<item type="block" inputWidth="auto">
+			<item type="input" value="" name="SEL_ORGA_PARENT_CODE" label="Code Parent" readonly="true"/>
+			<item type="newcolumn"/>
+			<item type="label" labelWidth="23" label=""/>
+			<item type="newcolumn"/>
+			<item type="button" name="assign_group" value="---->"/>
+		</item>
+		<item type="template" name="SEL_REMARK" value="" label="" className="I3"/>
+	</item>
+	<item type="newcolumn"/>
+	<item type="fieldset" name="dat2" inputWidth="auto" label="Gérer un contact">
+		<item type="block" inputWidth="auto">
+			<item type="hidden" name="id"/>
+			<item type="input" value="" validate="NotEmpty" inputWidth="100" name="code" label="Code"/>
+			<item type="input" value="" validate="NotEmpty" inputWidth="260" name="name" label="Nom"/>
+			<item type="hidden" name="group_dict_id"/>
+			<item type="input" value="" name="ORGA_GROUP_CODE" label="Groupe" readonly="true"/>
+			<item type="input" value="" name="ORGA_PARENT_CODE" label="Organisation" readonly="true"/>
+		</item>
+		<item type="block" inputWidth="auto">
+			<item type="label" label="Actif"/>
+			<item type="newcolumn"/>
+                        <item type="radio" name="active_f" value="0" inputWidth="auto" labelWidth="40" label="Non"/>
+			<item type="newcolumn"/>
+                        <item type="radio" name="active_f" value="1" inputWidth="auto" labelWidth="40" checked="true" label="Oui"/>
+		</item>
+		<item type="block" inputWidth="auto">
+			<item type="input" value="" inputWidth="140" name="phone" label="Téléphone"/>
+			<item type="input" value="" inputWidth="140" name="mobile" label="Mobile"/>
+			<item type="input" value="" inputWidth="260" name="email" label="E-mail"/>
+			<item type="input" value="" inputWidth="260" name="url" label="URL"/>
+		</item>
+		<item type="block" inputWidth="auto">
+			<item type="button" name="display_table" value="Afficher la table"/>
+			<item type="newcolumn"/>
+			<item type="button" name="edit" value="Modifier"/>
+			<item type="newcolumn"/>
+			<item type="button" name="insert" value="Insérer"/>
+			<item type="newcolumn"/>
+			<item type="button" name="delete" value="Supprimer"/>
+		</item>
+		<item type="template" name="REMARK" value="" label="" className="I3"/>
+	</item>
+</item>
+</items>

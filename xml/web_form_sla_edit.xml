@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<items>
+<item type="block" inputWidth="auto">
+	<item type="settings" position="label-left" labelWidth="120" inputWidth="180"/>
+	<item type="fieldset" name="dat1" inputWidth="auto" label="Modification / Suppression d'un SLA">
+		<item type="block" inputWidth="auto">
+			<item type="hidden" name="id"/>
+			<item type="input" value="" validate="NotEmpty" name="code" label="Code"/>
+			<item type="input" value="" validate="NotEmpty" name="name" label="Nom"/>
+		</item>
+                <item type="block" inputWidth="auto">
+                        <item type="select" value="" validate="[^0]" width="182" name="organisation_dict_id" label="Organisation"/>
+                        <item type="select" value="" validate="[^0]" width="240" name="global_calc_rule_dict_id" label="Règle de calcul"/>
+                </item>
+		<item type="block" inputWidth="auto">
+                        <item type="label" label="Actif"/>
+			<item type="newcolumn"/>
+                        <item type="radio" name="active_f" value="0" inputWidth="auto" labelWidth="40" label="Non"/>
+			<item type="newcolumn"/>
+                        <item type="radio" name="active_f" value="1" inputWidth="auto" labelWidth="40" checked="true" label="Oui"/>
+                </item>
+                <item type="block" inputWidth="auto">
+			<item type="input" value="" inputWidth="50" name="rank_n" label="Rang"/>
+                </item>
+
+		<item type="block" inputWidth="auto">
+			<item type="label" label=""/>
+			<item type="newcolumn"/>
+			<item type="button" name="edit" value="Sauvegarder"/>
+			<item type="newcolumn"/>
+			<item type="button" name="delete" value="Supprimer" disabled="true"/>
+		</item>
+		<item type="block" inputWidth="auto">
+			<item type="label" label=""/>
+			<item type="newcolumn"/>
+			<item type="button" name="sla_edit_time" value="Editer les temps de ce SLA"/>
+		</item>
+		<item type="template" name="last_modif" label="Dernière modification" className="I3"/>
+	</item>
+</item>
+</items>

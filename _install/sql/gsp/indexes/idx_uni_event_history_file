@@ -1,0 +1,1 @@
+CREATE UNIQUE INDEX idx_uni_event_history_file ON event_history_file (event_history_id,rank_n,type,subtype,name);

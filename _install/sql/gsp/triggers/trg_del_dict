@@ -1,0 +1,41 @@
+CREATE TRIGGER trg_del_dict BEFORE DELETE ON dict FOR EACH ROW
+BEGIN
+	SELECT RAISE(ROLLBACK, 'Cannot delete : type is referenced in table event')
+	WHERE (SELECT id FROM event WHERE type_dict_id = OLD.dict_id) IS NOT NULL;
+
+	SELECT RAISE(ROLLBACK, 'Cannot delete : status is referenced in table event')
+	WHERE (SELECT id FROM event WHERE status_dict_id = OLD.dict_id) IS NOT NULL;
+
+	SELECT RAISE(ROLLBACK, 'Cannot delete : impact is referenced in table event')
+	WHERE (SELECT id FROM event WHERE impact_dict_id = OLD.dict_id) IS NOT NULL;
+
+	SELECT RAISE(ROLLBACK, 'Cannot delete : priority is referenced in table event')
+	WHERE (SELECT id FROM event WHERE priority_dict_id = OLD.dict_id) IS NOT NULL;
+
+	SELECT RAISE(ROLLBACK, 'Cannot delete : severity is referenced in table event')
+	WHERE (SELECT id FROM event WHERE severity_dict_id = OLD.dict_id) IS NOT NULL;
+
+	SELECT RAISE(ROLLBACK, 'Cannot delete : external code is referenced in table event_ext_code')
+	WHERE (SELECT id FROM event_ext_code WHERE type_dict_id = OLD.dict_id) IS NOT NULL;
+
+	SELECT RAISE(ROLLBACK, 'Cannot delete : history type is referenced in table event_history')
+	WHERE (SELECT id FROM event_history WHERE type_dict_id = OLD.dict_id) IS NOT NULL;
+
+	SELECT RAISE(ROLLBACK, 'Cannot delete : status is referenced in table event_history')
+	WHERE (SELECT id FROM event_history WHERE status_dict_id = OLD.dict_id) IS NOT NULL;
+
+	SELECT RAISE(ROLLBACK, 'Cannot delete : organisation is referenced in table contact')
+	WHERE (SELECT id FROM contact WHERE group_dict_id = OLD.dict_id) IS NOT NULL;
+
+	SELECT RAISE(ROLLBACK, 'Cannot delete : application is referenced in table package')
+	WHERE (SELECT id FROM package WHERE appl_dict_id = OLD.dict_id) IS NOT NULL;
+
+	SELECT RAISE(ROLLBACK, 'Cannot delete : application is referenced in table segment')
+	WHERE (SELECT id FROM segment WHERE appl_dict_id = OLD.dict_id) IS NOT NULL;
+
+	SELECT RAISE(ROLLBACK, 'Cannot delete : segmentation is referenced in table segment')
+	WHERE (SELECT id FROM segment WHERE type_dict_id = OLD.dict_id) IS NOT NULL;
+
+	SELECT RAISE(ROLLBACK, 'Cannot delete : this attribute is not empty')
+	WHERE (SELECT dict_id FROM dict WHERE parent_dict_id = OLD.dict_id) IS NOT NULL;
+END;

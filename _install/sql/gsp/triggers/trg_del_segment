@@ -1,0 +1,5 @@
+CREATE TRIGGER trg_del_segment BEFORE DELETE ON segment FOR EACH ROW
+BEGIN
+	SELECT RAISE(ROLLBACK, 'Cannot delete : segment is referenced in table event')
+	WHERE (SELECT id FROM event WHERE segment_id = OLD.id) IS NOT NULL;
+END;

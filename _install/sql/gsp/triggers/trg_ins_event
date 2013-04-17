@@ -1,0 +1,8 @@
+CREATE TRIGGER trg_ins_event AFTER INSERT ON event FOR EACH ROW
+BEGIN
+UPDATE event SET code = '#' || id WHERE new.id = id ;
+UPDATE event SET logged_d = (SELECT datetime ('now','localtime')) WHERE new.id = id ;
+UPDATE event SET planif_d = new.asked_d where new.asked_d isnull=0 and new.id = id ;
+UPDATE event SET last_user_id = (select id from user where code = getuser()) WHERE new.id = id ;
+UPDATE event SET last_modif_d = (SELECT datetime ('now','localtime')) WHERE new.id = id ;
+END;

@@ -1,0 +1,1 @@
+CREATE UNIQUE INDEX idx_uni_event ON event(code);

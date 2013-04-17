@@ -1,0 +1,6 @@
+CREATE TRIGGER trg_upd_config_inbox AFTER UPDATE ON config_inbox FOR EACH ROW
+BEGIN
+UPDATE config_inbox SET default_f = 0 WHERE old.default_f = 0 and new.default_f = 1 and old.id != id;
+UPDATE config_inbox SET last_user_id = (select id from user where code = getuser()) WHERE old.id = id ;
+UPDATE config_inbox SET last_modif_d = (SELECT datetime ('now','localtime')) WHERE old.id = id ;
+END;

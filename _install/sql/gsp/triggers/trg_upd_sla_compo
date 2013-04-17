@@ -1,0 +1,5 @@
+CREATE TRIGGER trg_upd_sla_compo AFTER UPDATE ON sla_compo FOR EACH ROW
+BEGIN
+UPDATE sla_compo SET last_user_id = (select id from user where code = getuser()) WHERE old.id = id ;
+UPDATE sla_compo SET last_modif_d = (SELECT datetime ('now','localtime')) WHERE old.id = id ;
+END;

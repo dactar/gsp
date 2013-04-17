@@ -1,0 +1,6 @@
+CREATE TRIGGER trg_upd_segment AFTER UPDATE ON segment FOR EACH ROW
+BEGIN
+UPDATE segment SET default_f = 0 WHERE old.default_f = 0 and new.default_f = 1 and old.appl_dict_id = new.appl_dict_id and old.id != id;
+UPDATE segment SET last_user_id = (SELECT id from user WHERE code = getuser()) WHERE old.id = id ;
+UPDATE segment SET last_modif_d = (SELECT datetime ('now','localtime')) WHERE old.id = id ;
+END;

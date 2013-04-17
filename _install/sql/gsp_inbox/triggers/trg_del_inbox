@@ -1,0 +1,4 @@
+CREATE TRIGGER trg_del_inbox BEFORE DELETE ON inbox FOR EACH ROW
+BEGIN
+      DELETE from inbox_attachment WHERE mail_id = OLD.id;
+END;

@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<items>
+<item type="block" inputWidth="auto">
+	<item type="settings" position="label-left" labelWidth="120" inputWidth="180"/>
+	<item type="fieldset" name="dat1" inputWidth="auto" label="Sélection d'un attribut">
+		<item type="block" inputWidth="auto">
+			<item type="hidden" name="sel_dict_id"/>
+			<item type="input" value="" name="SEL_CODE" label="Code" readonly="true"/>
+                        <item type="newcolumn"/>
+			<item type="label" label="" labelWidth="130"/>
+			<item type="newcolumn"/>
+                        <item type="button" name="copy_attribute" value="---->"/>
+		</item>
+		<item type="block" inputWidth="auto">
+			<item type="input" value="" name="SEL_DESC" inputWidth="260" label="Description" readonly="true"/>
+		</item>
+                <item type="block" inputWidth="auto">
+                        <item type="label" label="Actif"/>
+                        <item type="newcolumn"/>
+                        <item type="radio" name="SEL_ACTIVE_F" value="0" inputWidth="auto" labelWidth="40" label="Non" disabled="true"/>
+                        <item type="newcolumn"/>
+                        <item type="radio" name="SEL_ACTIVE_F" value="1" inputWidth="auto" labelWidth="40" checked="true" label="Oui" disabled="true"/>
+                </item>
+
+                <item type="block" inputWidth="auto">
+                        <item type="input" value="" inputWidth="50" name="SEL_RANK_N" label="Rang" readonly="true"/>
+		</item>
+
+		<item type="block" inputWidth="auto">
+			<item type="hidden" value="" name="SEL_PARENT_DICT_ID"/>
+			<item type="input" value="" name="SEL_PARENT_CODE" label="Attribut Parent" readonly="true"/>
+			<item type="newcolumn"/>
+			<item type="label" label="" labelWidth="133"/>
+			<item type="newcolumn"/>
+			<item type="button" name="copy_parent_attribute" value="---->"/>
+		</item>
+
+                <item type="block" inputWidth="auto">
+                        <item type="button" name="display_table" value="Afficher la table"/>
+                        <item type="newcolumn"/>
+                        <item type="button" name="delete" value="Supprimer"/>
+                </item>
+		<item type="hidden" name="SEL_PARENT_F"/>
+		<item type="hidden" name="SEL_MANDATORY_F"/>
+		<item type="template" name="SEL_REMARK" value="" label="" className="I3"/>
+	</item>
+	<item type="newcolumn"/>
+	<item type="fieldset" name="dat2" inputWidth="auto" label="Gérer un attribut">
+		<item type="block" inputWidth="auto">
+			<item type="hidden" name="dict_id"/>
+			<item type="input" value="" inputWidth="100" name="code" label="Code"/>
+			<item type="input" value="" inputWidth="260" name="description" label="Description"/>
+		</item>
+                <item type="block" inputWidth="auto">
+                        <item type="label" label="Actif"/>
+                        <item type="newcolumn"/>
+                        <item type="radio" name="active_f" value="0" inputWidth="auto" labelWidth="40" label="Non"/>
+                        <item type="newcolumn"/>
+                        <item type="radio" name="active_f" value="1" inputWidth="auto" labelWidth="40" checked="true" label="Oui"/>
+                </item>
+		<item type="block" inputWidth="auto">
+			<item type="input" value="1" inputWidth="50" name="rank_n" label="Rang"/>
+			<item type="hidden" value="" name="parent_dict_id"/>
+			<item type="input" value="" name="PARENT_CODE" label="Attribut Parent"/>
+		</item>
+		<item type="block" inputWidth="auto">
+			<item type="button" name="edit" value="Modifier"/>
+			<item type="newcolumn"/>
+			<item type="button" name="insert" value="Insérer"/>
+		</item>
+	</item>
+</item>
+</items>

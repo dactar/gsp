@@ -1,0 +1,1 @@
+CREATE UNIQUE INDEX idx_uni_dict ON dict(code,parent_dict_id);

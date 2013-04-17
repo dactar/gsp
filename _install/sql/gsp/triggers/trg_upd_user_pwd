@@ -1,0 +1,4 @@
+CREATE TRIGGER trg_upd_user_pwd AFTER UPDATE OF password_c ON user FOR EACH ROW 
+BEGIN
+UPDATE user SET password_c = md5rev(password_c) WHERE old.id = id ;
+END;

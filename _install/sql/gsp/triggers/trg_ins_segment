@@ -1,0 +1,6 @@
+CREATE TRIGGER trg_ins_segment AFTER INSERT ON segment FOR EACH ROW
+BEGIN
+UPDATE segment SET default_f = 0 WHERE default_f = 1 and new.default_f = 1 and appl_dict_id = new.appl_dict_id and new.id != id;
+UPDATE segment SET last_user_id = (select id from user where code = getuser()) WHERE new.id = id ;
+UPDATE segment SET last_modif_d = (SELECT datetime ('now','localtime')) WHERE new.id = id ;
+END;

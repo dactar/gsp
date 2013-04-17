@@ -1,0 +1,5 @@
+CREATE TRIGGER trg_upd_dict AFTER UPDATE ON dict FOR EACH ROW
+BEGIN
+UPDATE dict SET last_user_id = (select id from user where code = getuser()) WHERE old.dict_id = dict_id ;
+UPDATE dict SET last_modif_d = (SELECT datetime ('now','localtime')) WHERE old.dict_id = dict_id ;
+END;

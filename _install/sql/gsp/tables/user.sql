@@ -1,0 +1,13 @@
+CREATE TABLE user
+(
+id INTEGER NOT NULL PRIMARY KEY,
+code VARCHAR(10) NOT NULL,
+name VARCHAR(30),
+alias VARCHAR(10),
+active_f TINYINT NOT NULL DEFAULT '1',
+admin_f TINYINT NOT NULL DEFAULT '0',
+contact_id INTEGER,
+password_c VARCHAR(40),
+last_user_id INTEGER,
+last_modif_d DATETIME
+);

@@ -1,0 +1,6 @@
+CREATE TRIGGER trg_ins_dict AFTER INSERT ON dict FOR EACH ROW
+BEGIN
+UPDATE dict SET parent_f = 1 WHERE (SELECT d.code from dict d where d.dict_id = new.parent_dict_id and d.code = 'organisation') = 'organisation' and new.dict_id = dict_id ; 
+UPDATE dict SET last_user_id = (SELECT id from user where code = getuser()) WHERE new.dict_id = dict_id ;
+UPDATE dict SET last_modif_d = (SELECT datetime ('now','localtime')) WHERE new.dict_id = dict_id ;
+END;

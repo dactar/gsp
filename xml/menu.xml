@@ -1,0 +1,193 @@
+<?xml version='1.0' ?>
+<menu mode="classic" maxItems="12" text=" " withoutImages="yes">
+	<item text="Gestion"    id="management" width="30" withoutImages="yes" >
+			<item text="Nouvel Evénement"       id="event_new">
+				<hotkey>CTRL+1</hotkey>
+				<userdata name="MODL">CVNT</userdata>
+                                <userdata name="WIN_WIDTH">800</userdata>
+                                <userdata name="WIN_HEIGHT">600</userdata>
+				<userdata name="WIN_MAXIMIZE">1</userdata>
+                                <userdata name="WIN_TITLE">Création d'un événement</userdata>
+			</item>
+
+			<item type="separator" id="div_1_1"/>
+
+			<item text="Mes événements"         id="event_mine">
+				<userdata name="MODL">MAIN</userdata>
+			</item>
+			<item text="Tous les événements"    id="event_all">
+				<userdata name="MODL">MAIN</userdata>
+				<userdata name="MODL_OPTION">ALL</userdata>
+			</item>
+			<item text="Vue hierarchique"       id="event_hier">
+				<userdata name="MODL">MAIN</userdata>
+				<userdata name="MODL_OPTION">HIER</userdata>
+			</item>
+
+			<item type="separator" id="div_1_2"/>
+
+			<item text="Evénements fermés"      id="event_closed">
+				<userdata name="MODL">MAIN</userdata>
+				<userdata name="MODL_OPTION">EVENT_CLOSED</userdata>
+			</item>
+			<item text="Mes Evénements fermés"  id="my_event_closed">
+				<userdata name="MODL">MAIN</userdata>
+				<userdata name="MODL_OPTION">MY_EVENT_CLOSED</userdata>
+			</item>
+
+			<item type="separator" id="div_1_3"/>
+
+			<item type="separator" id="div_1_4"/>
+
+			<item text="Mails cachés"           id="mail_hidden">
+				<userdata name="MODL">MAIN</userdata>
+				<userdata name="MODL_OPTION">MAIL_HIDDEN</userdata>
+			</item>
+			<item text="Mails traités"          id="mail_treated">
+				<userdata name="MODL">MAIN</userdata>
+				<userdata name="MODL_OPTION">MAIL_TREATED</userdata>
+			</item>
+	</item>
+	<item text="Administration"    id="admin"  width="30px" withoutImages="yes" >	
+
+			<item text="Configuration"          id="menu_config" withoutImages="yes" >	
+				<item text="Mails"          id="mail_config">
+					<userdata name="MODL">CBOX</userdata>
+					<userdata name="WIN_WIDTH">1000</userdata>
+                                	<userdata name="WIN_HEIGHT">420</userdata>
+                                	<userdata name="WIN_TITLE">Configuration des mails</userdata>
+				</item>
+
+				<item type="separator" id="div_2_1_1"/>
+
+				<item text="Définitions SLA"        id="sla_config">
+					<userdata name="MODL">CSLA</userdata>
+	                                <userdata name="WIN_WIDTH">800</userdata>
+    		                        <userdata name="WIN_HEIGHT">600</userdata>
+                                	<userdata name="WIN_TITLE">Définition des SLA</userdata>
+				</item>
+
+				<item type="separator" id="div_2_1_2"/>
+
+                                <item text="Plugins" id="plugins_config">
+                                        <userdata name="MODL">CPLG</userdata>
+                                        <userdata name="WIN_WIDTH">800</userdata>
+                                        <userdata name="WIN_HEIGHT">600</userdata>
+                                        <userdata name="WIN_TITLE">Configuration des plugins</userdata>
+				</item>
+			</item>
+			<item text="Infrastructure"         id="menu_infra" withoutImages="yes" >	
+				<item text="Attributs"      id="dict_infra">
+					<userdata name="MODL">DICT</userdata>
+					<userdata name="WIN_WIDTH">1200</userdata>
+					<userdata name="WIN_HEIGHT">600</userdata>
+					<userdata name="WIN_MAXIMIZE">1</userdata>
+					<userdata name="WIN_TITLE">Administration des attributs d'infrastructure</userdata>
+				</item>
+
+				<item type="separator" id="div_2_2_1"/>
+
+				<item text="Packaging"      id="pack_infra">
+					<userdata name="MODL">PACK</userdata>
+					<userdata name="WIN_WIDTH">1200</userdata>
+					<userdata name="WIN_HEIGHT">600</userdata>
+					<userdata name="WIN_MAXIMIZE">1</userdata>	
+					<userdata name="WIN_TITLE">Administration des packages applicatifs</userdata>
+				</item>
+				<item text="Segmentation"   id="segm_infra">
+					<userdata name="MODL">SEGM</userdata>
+					<userdata name="WIN_WIDTH">1200</userdata>
+					<userdata name="WIN_HEIGHT">600</userdata>
+					<userdata name="WIN_MAXIMIZE">1</userdata>
+					<userdata name="WIN_TITLE">Administration de la segmentation applicative</userdata>	
+				</item>
+
+				<item type="separator" id="div_2_2_2"/>
+
+				<item text="Contacts"       id="cont_infra">
+					<userdata name="MODL">CONT</userdata>
+					<userdata name="WIN_WIDTH">1200</userdata>
+					<userdata name="WIN_HEIGHT">600</userdata>
+					<userdata name="WIN_MAXIMIZE">1</userdata>
+					<userdata name="WIN_TITLE">Administration des contacts</userdata>
+				</item>
+			</item>
+			<item text="Evenements"             id="event_admin">
+				<userdata name="MODL">EVNT</userdata>
+				<userdata name="WIN_WIDTH">800</userdata>
+				<userdata name="WIN_HEIGHT">600</userdata>
+				<userdata name="WIN_TITLE">Administration des événements</userdata>
+			</item>
+
+                        <item text="Journal"               id="journal">
+                                <userdata name="MODL">JRNL</userdata>
+                                <userdata name="WIN_WIDTH">800</userdata>
+                                <userdata name="WIN_HEIGHT">600</userdata>
+                                <userdata name="WIN_TITLE">Journal</userdata>
+                        </item>
+
+			<item text="Boîte de réception"     id="mail_admin">
+				<userdata name="MODL">IBOX</userdata>
+				<userdata name="WIN_WIDTH">800</userdata>
+                                <userdata name="WIN_HEIGHT">600</userdata>
+                                <userdata name="WIN_TITLE">Boîte de réception</userdata>
+			</item>
+
+			<item type="separator" id="div_2_1"/>
+
+                        <item text="Statistiques"  id="stat">
+                                <userdata name="MODL">STAT</userdata>
+                                <userdata name="WIN_WIDTH">760</userdata>
+                                <userdata name="WIN_HEIGHT">480</userdata>
+                                <userdata name="WIN_TITLE">Statistiques</userdata>
+                        </item>
+
+                        <item text="Vérification des SLA"  id="sla_verify">
+                                <userdata name="MODL">VSLA</userdata>
+                                <userdata name="WIN_WIDTH">800</userdata>
+                                <userdata name="WIN_HEIGHT">600</userdata>
+				<userdata name="WIN_MAXIMIZE">1</userdata>
+                                <userdata name="WIN_TITLE">Vérification des SLA</userdata>
+                        </item>
+
+			<item type="separator" id="div_2_2"/>
+
+			<item text="Utilisateur"            id="user_admin">
+				<userdata name="MODL">AUSR</userdata>
+				<userdata name="WIN_WIDTH">800</userdata>
+				<userdata name="WIN_HEIGHT">600</userdata>
+				<userdata name="WIN_TITLE">Administration des utilisateurs</userdata>
+			</item>
+	</item>
+	<item text="Session"    id="session"  width="50px" withoutImages="yes" >
+			<item text="Changer de mot de passe" id="change_password">
+				<userdata name="MODL">CPWD</userdata>
+				<userdata name="WIN_WIDTH">540</userdata>
+				<userdata name="WIN_HEIGHT">220</userdata>
+				<userdata name="WIN_TITLE">Changer de mot de passe</userdata>
+			</item>
+
+			<item type="separator" id="div_3_1"/>
+
+			<item text="Quitter"                id="logout_session">
+				<userdata name="MODL">LOGO</userdata>
+			</item>
+	</item>
+	<item text="Aide"    id="main_help"  width="50px" withoutImages="yes" >
+			<item text="Documentation"          id="docu_help">
+				<userdata name="MODL">DOCU</userdata>
+				<userdata name="WIN_WIDTH">800</userdata>
+				<userdata name="WIN_HEIGHT">600</userdata>
+				<userdata name="WIN_TITLE">Documentation</userdata>
+			</item>
+
+			<item type="separator" id="div_4_1"/>
+
+			<item text="A propos de GSP"        id="help_about">
+				<userdata name="MODL">ABOU</userdata>
+				<userdata name="WIN_WIDTH">455</userdata>
+				<userdata name="WIN_HEIGHT">415</userdata>
+				<userdata name="WIN_TITLE">A propos de GSP</userdata>
+			</item>
+	</item>
+</menu>

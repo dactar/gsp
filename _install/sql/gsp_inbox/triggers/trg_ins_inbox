@@ -1,0 +1,5 @@
+CREATE TRIGGER trg_ins_inbox AFTER INSERT ON inbox FOR EACH ROW
+BEGIN
+UPDATE inbox SET creation_d = (SELECT datetime ('now','1 hours')) WHERE new.id = id ;
+UPDATE inbox SET last_modif_d = (SELECT datetime ('now','1 hours')) WHERE new.id = id ;
+END;

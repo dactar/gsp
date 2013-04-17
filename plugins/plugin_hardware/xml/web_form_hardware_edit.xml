@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<items>
+<item type="block" inputWidth="auto">
+	<item type="settings" position="label-left" labelWidth="150" inputWidth="180"/>
+	<item type="fieldset" name="dat2" inputWidth="auto" label="Gérer un matériel">
+	<item type="hidden" name="NATURE" value="hardware"/>
+		<item type="block" inputWidth="auto">
+			<item type="hidden" name="id"/>
+			<item type="select" value="" validate="NotEmpty" inputWidth="143" name="type_dict_id" label="Type"/>
+			<item type="input" value="" validate="NotEmpty" inputWidth="400" name="description" label="Description"/>
+			<item type="select" value="" validate="NotEmpty" inputWidth="143" name="status_dict_id" label="Statut"/>
+			<item type="input" value="" inputWidth="140" name="hostname" label="Hostname"/>
+			<item type="input" value="" inputWidth="140" name="ip_address" label="Adresse IP"/>
+			<item type="input" value="" inputWidth="100" name="internal_reference" label="N° interne"/>
+			<item type="input" value="" inputWidth="140" name="serial_n" label="N° de série"/>
+			<item type="select" value="" validate="NotEmpty" inputWidth="103" name="brand_dict_id" label="Marque"/>
+			<item type="input" value="" inputWidth="100" name="model" label="Model"/>
+			<item type="calendar" value="" inputWidth="100" name="acquisition_d" dateFormat="%d.%m.%Y" serverDateFormat="%Y-%m-%d" label="Date d'acquisition"/>
+			<item type="calendar" value="" inputWidth="100" name="install_d" dateFormat="%d.%m.%Y" serverDateFormat="%Y-%m-%d" label="Date d'installation"/>
+			<item type="input" value="" inputWidth="140" name="location" label="Lieu"/>
+			<item type="select" value="" name="network_id" inputWidth="283" label="Configuration réseau"/>
+		</item>
+                <item type="block" inputWidth="auto">
+                        <item type="hidden" name="contact_id"/>
+                        <item type="input" value="" name="CONTACT_NAME" label="Contact" readonly="true"/>
+                        <item type="newcolumn"/>
+                        <item type="button" name="contact_search" value="..."/>
+                </item>
+		<item type="block" inputWidth="auto">
+			<item type="label" label=""/>
+			<item type="newcolumn"/>
+			<item type="button" name="edit" value="Valider"/>
+			<item type="newcolumn"/>
+			<item type="button" name="delete" value="Supprimer"/>
+		</item>
+	</item>
+</item>
+</items>

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<items>
+<item type="block" inputWidth="auto">
+	<item type="settings" position="label-left" labelWidth="150" inputWidth="180"/>
+	<item type="fieldset" name="dat2" inputWidth="auto" label="Créer une configuration réseau">
+	<item type="hidden" name="NATURE" value="network"/>
+		<item type="block" inputWidth="auto">
+			<item type="select" value="" validate="NotEmpty" inputWidth="283" name="hardware_id" label="Switch"/>
+			<item type="input" value="" validate="NotEmpty" inputWidth="50" name="port_n" label="Port Number"/>
+			<item type="select" value="" validate="NotEmpty" inputWidth="143" name="connection_dict_id" label="Type de connexion"/>
+		</item>
+		<item type="block" inputWidth="auto">
+			<item type="label" label=""/>
+			<item type="newcolumn"/>
+			<item type="button" name="insert" value="Sauvegarder"/>
+		</item>
+	</item>
+</item>
+</items>

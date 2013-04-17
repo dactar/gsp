@@ -1,0 +1,6 @@
+CREATE TRIGGER trg_del_package BEFORE DELETE ON package FOR EACH ROW
+BEGIN
+	SELECT RAISE(ROLLBACK, 'Cannot delete : package is referenced in table event')
+	WHERE (SELECT id FROM event WHERE package_id = OLD.id) IS NOT NULL
+	   or (SELECT id FROM event WHERE planif_package_id = OLD.id) IS NOT NULL;
+END;
