@@ -22,7 +22,7 @@
 ?>
 <?
 	// GSP Version
-	$GSP_VERSION="0.10 (Build 20130417)";
+	$GSP_VERSION="0.11-dev";
 
 	// Main database path
 	$GSP_DB="/var/opt/gsp.db";
