@@ -34,6 +34,7 @@ class module
 		case "JRNL":	$this->class="journal"; break;
 		case "CPWD":	$this->class="user"; break;
 		case "CBOX":	$this->class="inbox"; break;
+		case "SEGM":	$this->class="segment"; break;
                 default :       $this->error=true;echo "Module $this->code : classe inconnue\n<br>"; break;
             }
             
@@ -67,7 +68,7 @@ class module
 	    	{
 	    		$class=new $this->class();
 
-            		if ($this->code != "STAT" && $this->code != "CPLG")
+            		if ($this->code != "STAT" && $this->code != "CPLG" && $this->code != "SEGM")
             		{
             			global $web_page;
             			$web_page->render();
