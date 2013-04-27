@@ -41,7 +41,7 @@ class web_form
 	    $this->opt_calendar="<link rel='stylesheet' type='text/css' href='ext/dhtmlx/css/dhtmlxcalendar.css'></link>\n";
 	    $this->opt_calendar.="<link rel='stylesheet' type='text/css' href='ext/dhtmlx/css/dhtmlxcalendar_dhx_skyblue.css'></link>\n";
 	    $this->opt_calendar.="<script src='ext/dhtmlx/dhtmlxcalendar.js'></script>\n";
-	    $this->opt_calendar.="<script src='ext/dhtmlx/dhtmlxform_item_calendar.js'></script>\n";
+	    $this->opt_calendar.="<script src='ext/dhtmlx/ext/dhtmlxform_item_calendar.js'></script>\n";
 	    $this->opt_calendar.="<script src='js/calendar_lang.js'></script>\n";
 	}
 
