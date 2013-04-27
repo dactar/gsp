@@ -10,12 +10,15 @@ class web_form
 	public $opt_lang_calendar;
 	public $opt_freeze_calendar;
 
+	public $output;
+	public $return;
+
 	function __tostring()
 	{
 	    return "Cette classe permet de gérer un formulaire HTML";
 	}
 
-	function __construct($entity, $action)
+	function __construct($entity, $action, $return=FALSE)
 	{
 	    $this->entity = $entity;
             $this->action = $action;
@@ -24,6 +27,8 @@ class web_form
             $this->list_calendars = array();
 	    $this->opt_calendar = "";
 	    $this->opt_lang_calendar = "";
+
+	    $this->return = $return;
         }
 
 	function set_list_options($fields)
@@ -90,7 +95,7 @@ class web_form
 	    {
 	        $xmlformfile="plugins/plugin_" . $_REQUEST[MODL_OPTION] . "/xml/web_form_" . $this->entity . "_" . $this->action . ".xml";
             }
-            echo "
+            $this->output .= "
 <style>
 .dhxlist_obj_dhx_skyblue div.dhx_list_btn td.btn_m div.btn_txt {
 padding:1px 5px;
@@ -105,16 +110,16 @@ function load_optlist()
 {";
            foreach($this->list_options as $field)
            {
-		echo "\n\twebform_load_optlist_static_" . trim($field) . "();";
+		$this->output .= "\n\twebform_load_optlist_static_" . trim($field) . "();";
 	   }
 
            foreach($this->list_radio as $field)
            {
-		echo "\n\twebform_load_radio_static_" . trim($field) . "();";
+		$this->output .= "\n\twebform_load_radio_static_" . trim($field) . "();";
 	   }
 
 		
-echo "\n}\n
+$this->output .= "\n}\n
 	var form;
         var id=$id;
 	var MODL='$_REQUEST[MODL]';
@@ -307,7 +312,14 @@ echo "\n}\n
     });
 </script>
 ";
-            return "On affiche le formulaire"; 
+	    if ($this->return)
+	    {
+            	return $this->output;
+	    }
+	    else
+	    {
+		echo $this->output;
+	    }
 	}
 }
 ?>
