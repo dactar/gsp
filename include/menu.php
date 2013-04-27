@@ -37,7 +37,6 @@ $GSP_INBOX_DB_TABLE=return_query($db,"select inbox_db_table from config_inbox wh
 
 if ($_REQUEST[MODL] == "AUSR" && ($_REQUEST[ACTION] == "Sauvegarder" || $_REQUEST[ACTION] == "Valider" || $_REQUEST[ACTION] == "getxml")) {include("include/menu/user.php"); exit;}
 if ($_REQUEST[MODL] == "PACK" && ($_REQUEST[ACTION] == "Sauvegarder" || $_REQUEST[ACTION] == "Valider" || $_REQUEST[ACTION] == "Supprimer")) {include("include/menu/packaging.php"); exit;}
-if ($_REQUEST[MODL] == "SEGM" && ($_REQUEST[ACTION] == "Sauvegarder" || $_REQUEST[ACTION] == "Valider" || $_REQUEST[ACTION] == "Supprimer")) {include("include/menu/segmentation.php"); exit;}
 if ($_REQUEST[MODL] == "CONT" && ($_REQUEST[ACTION] == "Sauvegarder" || $_REQUEST[ACTION] == "Valider" || $_REQUEST[ACTION] == "Supprimer")) {include("include/menu/contact.php"); exit;}
 if ($_REQUEST[MODL] == "DICT" && ($_REQUEST[ACTION] == "Sauvegarder" || $_REQUEST[ACTION] == "Valider" || $_REQUEST[ACTION] == "Supprimer")) {include("include/menu/dict.php"); exit;}
 
@@ -71,7 +70,7 @@ switch ($_REQUEST[MODL])
 	case "DICT": include("include/menu/dict.php"); break;		// Attributes administration
 	case "AUSR": include("include/menu/user.php"); break;		// Users administration
 	case "PACK": include("include/menu/packaging.php"); break;      // Packaging administration
-	case "SEGM": include("include/menu/segmentation.php"); break;   // Segmentation administration
+	case "SEGM": new module("SEGM","$_REQUEST[ACTION]"); break;     // Segmentation administration
 	case "CONT": include("include/menu/contact.php"); break;	// Contacts administration
 	case "EVNT": include("include/menu/event.php"); break;		// Events management
 	case "IBOX": include("include/menu/inbox.php"); break;		// Inbox management
