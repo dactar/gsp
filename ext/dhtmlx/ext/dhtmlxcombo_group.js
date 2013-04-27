@@ -1,4 +1,4 @@
-//v.3.0 build 110707
+//v.3.6 build 130417
 
 /*
 Copyright DHTMLX LTD. http://www.dhtmlx.com
@@ -10,7 +10,7 @@ dhtmlXCombo.prototype.attachChildCombo=function(a,c){if(!this._child_combos)this
 dhtmlXCombo.prototype.setAutoSubCombo=function(a,c){arguments.length==1&&(c="subcombo");if(this._parentCombo)b=new dhtmlXCombo(this._parentCombo.DOMParent,c,this._parentCombo.DOMelem.style.width),b._parentCombo=this._parentCombo;else{var b=new dhtmlXCombo(this.DOMParent,c,this.DOMelem.style.width);b._parentCombo=this}if(this._filter)b._filter=1;if(this._xml&&(b._xml=arguments.length>0?a:this._xml,a=b._xml,b._autoxml=this._autoxml,this._xmlCache))b._xmlCache=[];this.attachChildCombo(b,a);return b};
 dhtmlXCombo.prototype.detachChildCombo=function(a){for(var c=0;c<this._child_combos.length;c++)this._child_combos.splice(c,1);a.show(1)};dhtmlXCombo.prototype.showSubCombo=function(a,c){if(a._child_combos)for(var b=0;b<a._child_combos.length;b++)a._child_combos[b].show(c),a.showSubCombo(a._child_combos[b],0)};dhtmlXCombo.prototype.deleteParentVariable=function(a){return a=a.replace(/parent\=[^&]*/g,"").replace(/\?\&/,"?")};
 
-//v.3.0 build 110707
+//v.3.6 build 130417
 
 /*
 Copyright DHTMLX LTD. http://www.dhtmlx.com

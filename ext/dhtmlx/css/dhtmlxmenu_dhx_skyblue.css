@@ -135,6 +135,8 @@ div.dhtmlxMenu_dhx_skyblue_SubLevelArea_Polygon table.dhtmlxMebu_SubLevelArea_Tb
 div.dhtmlxMenu_dhx_skyblue_SubLevelArea_Polygon table.dhtmlxMebu_SubLevelArea_Tbl tr.sub_item_selected {
 	height: 24px;
 	cursor: default;
+}
+div.dhtmlxMenu_dhx_skyblue_SubLevelArea_Polygon table.dhtmlxMebu_SubLevelArea_Tbl tr.sub_item_selected td {
 	background-image: url("../imgs/dhxmenu_dhx_skyblue/dhxmenu_subselbg.gif") !important;
 	background-repeat: repeat-x;
 	background-position: top;

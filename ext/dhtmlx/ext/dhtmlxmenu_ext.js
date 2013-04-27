@@ -1,4 +1,4 @@
-//v.3.0 build 110707
+//v.3.6 build 130417
 
 /*
 Copyright DHTMLX LTD. http://www.dhtmlx.com
@@ -36,7 +36,7 @@ dhtmlXMenuObject.prototype._removeDownArrow=function(a){var c="arrowdown_"+this.
 dhtmlXMenuObject.prototype._isArrowExists=function(a){return this.idPull["arrowup_"+a]!=null&&this.idPull["arrowdown_"+a]!=null?!0:!1};dhtmlXMenuObject.prototype._doScrollUp=function(a,c){var b=this.idPull["polygon_"+a];if(this._canScrollUp&&b.scrollTop>0){var d=!1,e=b.scrollTop-this._scrollUpTMStep;e<0&&(d=!0,e=0);b.scrollTop=e;if(!d){var f=this;this._scrollUpTM=window.setTimeout(function(){f._doScrollUp(a,!1)},this._scrollUpTMTime)}}else this._canScrollUp=!1,this._checkArrowsState(a);c&&this._checkArrowsState(a)};
 dhtmlXMenuObject.prototype._doScrollDown=function(a,c){var b=this.idPull["polygon_"+a];if(this._canScrollDown&&b.scrollTop+b.offsetHeight<=b.scrollHeight){var d=!1,e=b.scrollTop+this._scrollDownTMStep;e+b.offsetHeight>b.scollHeight&&(d=!0,e=b.scollHeight-b.offsetHeight);b.scrollTop=e;if(!d){var f=this;this._scrollDownTM=window.setTimeout(function(){f._doScrollDown(a,!1)},this._scrollDownTMTime)}}else this._checkArrowsState(a);c&&this._checkArrowsState(a)};
 dhtmlXMenuObject.prototype._countPolygonItems=function(a){var c=0,b;for(b in this.itemPull){var d=this.itemPull[b].parent,e=this.itemPull[b].type;d==this.idPrefix+a&&(e=="item"||e=="radio"||e=="checkbox")&&c++}return c};
-dhtmlXMenuObject.prototype.setOverflowHeight=function(a){if(!(this.limit==0&&a<=0))if(this._clearAndHide(),this.limit>=0&&a>0)this.limit=a;else if(this.limit>0&&a<=0){for(var c in this.itemPull)if(this._isArrowExists(c)){var b=String(c).replace(this.idPrefix,"");this._removeUpArrow(b);this._removeDownArrow(b);this.idPull["polygon_"+c].style.height=""}this.limit=0}};
+dhtmlXMenuObject.prototype.setOverflowHeight=function(a){if(a==="auto")this.limit=0,this.autoOverflow=!0;else if(!(this.limit==0&&a<=0))if(this._clearAndHide(),this.limit>=0&&a>0)this.limit=a;else if(this.limit>0&&a<=0){for(var c in this.itemPull)if(this._isArrowExists(c)){var b=String(c).replace(this.idPrefix,"");this._removeUpArrow(b);this._removeDownArrow(b);this.idPull["polygon_"+c].style.height=""}this.limit=0}};
 dhtmlXMenuObject.prototype._getRadioImgObj=function(a){try{var c=this.idPull[this.idPrefix+a].childNodes[this._rtl?2:0].childNodes[0]}catch(b){c=null}return c};dhtmlXMenuObject.prototype._setRadioState=function(a,c){var b=this._getRadioImgObj(a);if(b!=null){var d=this.itemPull[this.idPrefix+a];d.checked=c;d.imgen="rdbt_"+(d.checked?"1":"0");d.imgdis=d.imgen;b.className="sub_icon "+d.imgen}};
 dhtmlXMenuObject.prototype._radioOnClickHandler=function(a,c,b){if(!(c.charAt(1)=="d"||this.itemPull[this.idPrefix+a].group==null)){var d=this.itemPull[this.idPrefix+a].group;this.checkEvent("onRadioClick")?this.callEvent("onRadioClick",[d,this.getRadioChecked(d),a,this.contextMenuZoneId,b])&&this.setRadioChecked(d,a):this.setRadioChecked(d,a);this.checkEvent("onClick")&&this.callEvent("onClick",[a])}};
 dhtmlXMenuObject.prototype.getRadioChecked=function(a){for(var c=null,b=0;b<this.radio[a].length;b++){var d=this.radio[a][b].replace(this.idPrefix,""),e=this._getRadioImgObj(d);if(e!=null){var f=e.className.match(/rdbt_1$/gi);f!=null&&(c=d)}}return c};dhtmlXMenuObject.prototype.setRadioChecked=function(a,c){if(this.radio[a]!=null)for(var b=0;b<this.radio[a].length;b++){var d=this.radio[a][b].replace(this.idPrefix,"");this._setRadioState(d,d==c)}};
@@ -52,7 +52,7 @@ dhtmlXMenuObject.prototype._readLevel=function(a){var c="",b;for(b in this.itemP
 "</hotkey>"));this.itemPull[b].type=="separator"?i=' type="separator"':this.itemPull[b].state=="disabled"&&(g=' enabled="false"');this.itemPull[b].type=="checkbox"&&(i=' type="checkbox"'+(this.itemPull[b].checked?' checked="true"':""));this.itemPull[b].type=="radio"&&(i=' type="radio" group="'+this.itemPull[b].group+'" '+(this.itemPull[b].checked?' checked="true"':""));c+="<item id='"+k+"'"+h+i+d+e+g+">";c+=f;this.itemPull[b].complex&&(c+=this._readLevel(b));c+="</item>"}return c};
 dhtmlXMenuObject.prototype.serialize=function(){var a="<menu>"+this._readLevel(this.idPrefix+this.topId)+"</menu>";return a};
 
-//v.3.0 build 110707
+//v.3.6 build 130417
 
 /*
 Copyright DHTMLX LTD. http://www.dhtmlx.com

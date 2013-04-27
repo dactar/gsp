@@ -13,10 +13,16 @@
 	position: relative;
 	float: left;
 }
+	.dhxform_obj_dhx_skyblue.dhxform_rtl div.dhxform_base {
+		float: right;
+	}
 .dhxform_obj_dhx_skyblue div.dhxform_base_nested {
 	padding: 0px 0px 0px 20px;
 	clear: both;
 }
+	.dhxform_obj_dhx_skyblue.dhxform_rtl div.dhxform_base_nested {
+		padding: 0px 20px 0px 0px;
+	}
 
 /************************************************************************************************************************/
 /*	label-link, inner container, checkbox/radio									*/
@@ -46,7 +52,7 @@
 	width: 18px;
 	height: 18px;
 	font-size: 1px;
-	-moz-user-select: -moz-none;
+	/*-moz-user-select: -moz-none;*/
 }
 .dhxform_obj_dhx_skyblue div.dhxform_img.chbx0,
 .dhxform_obj_dhx_skyblue div.dhxform_img.chbx1,
@@ -78,7 +84,7 @@
 	font-size: inherit;
 	color: #000000;
 	overflow-x: hidden;
-	-moz-user-select: none;
+	/*-moz-user-select: none;*/
 	overflow: hidden;
 	white-space: normal;
 }
@@ -86,12 +92,18 @@
 .dhxform_obj_dhx_skyblue div.dhxform_label.dhxform_label_align_left {
 	text-align: left;
 }
+	.dhxform_obj_dhx_skyblue.dhxform_rtl div.dhxform_label.dhxform_label_align_left {
+		text-align: right;
+	}
 .dhxform_obj_dhx_skyblue div.dhxform_label.dhxform_label_align_center {
 	text-align: center;
 }
 .dhxform_obj_dhx_skyblue div.dhxform_label.dhxform_label_align_right {
 	text-align: right;
 }
+	.dhxform_obj_dhx_skyblue.dhxform_rtl div.dhxform_label.dhxform_label_align_right {
+		text-align: left;
+	}
 
 .dhxform_obj_dhx_skyblue div.disabled div.dhxform_label,
 .dhxform_obj_dhx_skyblue div.disabled div.dhxform_label div.dhxform_label_nav_link,
@@ -101,8 +113,13 @@
 
 .dhxform_obj_dhx_skyblue div.dhxform_label span.dhxform_item_required {
 	margin-left: 5px;
+	margin-right: 0px;
 	color: red;
 }
+	.dhxform_obj_dhx_skyblue.dhxform_rtl div.dhxform_label span.dhxform_item_required {
+		margin-left: 0px;
+		margin-right: 5px;
+	}
 
 
 /************************************************************************************************************************/
@@ -118,15 +135,20 @@
 	font-family: Tahoma;
 	font-size: inherit;
 	color: #000000;
-	-moz-user-select: text;
+	/*-moz-user-select: text;*/
 	font-size: 1em;
+	resize: none;
 }
 .dhxform_obj_dhx_skyblue div.disabled .dhxform_textarea {
 	color: #b2b2b2;
 	background-color: #ffffff;
 	border: #c2d0dd 1px solid;
 }
-
+	.dhxform_obj_dhx_skyblue.dhxform_rtl .dhxform_textarea {
+		text-align: right;
+		direction: rtl;
+		/*unicode-bidi: bidi-override;*/
+	}
 /************************************************************************************************************************/
 /*	hidden input for checkbox/radio											*/
 
@@ -146,6 +168,13 @@
 	position: absolute;
 	margin: 0px;
 }
+	.dhxform_obj_dhx_skyblue.dhxform_rtl div.dhxform_control.dhxform_img_node div.dhxform_img {
+		float: none;
+		top: 3px;
+		left: 0px;
+		position: absolute;
+		margin: 0px;
+	}
 
 
 /************************************************************************************************************************/
@@ -165,6 +194,11 @@
 	background-color: #ffffff;
 	border: #c2d0dd 1px solid;
 }
+	.dhxform_obj_dhx_skyblue.dhxform_rtl select,
+	.dhxform_obj_dhx_skyblue.dhxform_rtl option {
+		direction: rtl;
+		
+	}
 
 
 /************************************************************************************************************************/
@@ -178,6 +212,10 @@
 	clear: left;
 	width: 100%;
 }
+	.dhxform_obj_dhx_skyblue.dhxform_rtl fieldset.dhxform_fs {
+		clear: right;
+	}
+
 .dhxform_obj_dhx_skyblue div.disabled fieldset.dhxform_fs {
 	border: #c2d0dd 1px solid;
 }
@@ -189,8 +227,10 @@
 	font-weight: normal;
 	padding: 0px 4px 1px 4px;
 	text-align: left;
-	
 }
+	.dhxform_obj_dhx_skyblue.dhxform_rtl fieldset.dhxform_fs legend.fs_legend {
+		text-align: right;
+	}
 .dhxform_obj_dhx_skyblue div.disabled fieldset.dhxform_fs legend.fs_legend {
 	color: #b2b2b2;
 }
@@ -208,16 +248,31 @@
 	float: left;
 	margin: 3px 5px 0px 1px;
 }
+	.dhxform_obj_dhx_skyblue.dhxform_rtl div.dhxform_item_label_right div.dhxform_img {
+		float: right;
+		margin: 3px 1px 0px 5px;
+	}
+
 .dhxform_obj_dhx_skyblue div.dhxform_item_label_right div.dhxform_label {
 	float: left;
 	padding: 1px 0px 1px 0px;
 	margin: 2px 0 2px 0px;
 }
+	.dhxform_obj_dhx_skyblue.dhxform_rtl div.dhxform_item_label_right div.dhxform_label {
+		float: right;
+	}
+
 
 .dhxform_obj_dhx_skyblue div.dhxform_item_label_right div.dhxform_control {
 	float: left;
 	margin-right: 6px;
+	margin-left: 0px;
 }
+	.dhxform_obj_dhx_skyblue.dhxform_rtl div.dhxform_item_label_right div.dhxform_control {
+		float: right;
+		margin-right: 0px;
+		margin-left: 6px;
+	}
 
 /************************************************************************************************************************/
 /*	item node, label left												*/
@@ -231,17 +286,31 @@
 	float: right;
 	margin: 3px 1px 0px 5px;
 }
+	.dhxform_obj_dhx_skyblue.dhxform_rtl div.dhxform_item_label_left div.dhxform_img {
+		float: left;
+		margin: 3px 5px 0px 1px;
+	}
+
 
 .dhxform_obj_dhx_skyblue div.dhxform_item_label_left div.dhxform_label {
 	float: left;
 	padding: 1px 0px 1px 0px;
 	margin: 2px 0px 2px 0px;
 }
+	.dhxform_obj_dhx_skyblue.dhxform_rtl div.dhxform_item_label_left div.dhxform_label {
+		float: right;
+	}
 
 .dhxform_obj_dhx_skyblue div.dhxform_item_label_left div.dhxform_control {
 	float: left;
-	margin-left: 4px;
+	padding-left: 4px;
+	padding-right: 0px;
 }
+	.dhxform_obj_dhx_skyblue.dhxform_rtl div.dhxform_item_label_left div.dhxform_control {
+		float: right;
+		padding-right: 4px;
+		padding-left: 0px;
+	}
 
 /************************************************************************************************************************/
 /*	item node, label top												*/
@@ -249,6 +318,18 @@
 .dhxform_obj_dhx_skyblue div.dhxform_item_label_top {
 	clear: both;
 }
+.dhxform_obj_dhx_skyblue div.dhxform_item_label_top div.dhxform_label {
+	float: none;
+}
+.dhxform_obj_dhx_skyblue div.dhxform_item_label_top div.dhxform_control {
+	float: none;
+	margin-left: 0px;
+}
+	.dhxform_obj_dhx_skyblue.dhxform_rtl div.dhxform_item_label_top div.dhxform_control {
+		float: none;
+		margin-right: 0px;
+	}
+
 
 /************************************************************************************************************************/
 /*	item node, absolute position											*/
@@ -303,6 +384,9 @@
 	clear: both;
 	-moz-user-select: none;
 }
+	.dhxform_obj_dhx_skyblue.dhxform_rtl div.dhxform_btn {
+		float: right;
+	}
 
 .dhxform_obj_dhx_skyblue div.dhxform_btn table {
 	height: 21px;

@@ -1,4 +1,4 @@
-//v.3.0 build 110707
+//v.3.6 build 130417
 
 /*
 Copyright DHTMLX LTD. http://www.dhtmlx.com
@@ -11,7 +11,7 @@ this._date2str2(this.cell.val):this.cell.innerHTML.toString()._dhx_trim()};this.
 function(a){return"m/d/y".replace("m",this._2dg(a.getMonth()*1+1)).replace("d",this._2dg(a.getDate())).replace("y",this._2dg(a.getFullYear()*1))};this._date2str=function(a){return(this.grid._dtmask||"m/d/y").replace("m",this._2dg(a.getMonth()*1+1)).replace("d",this._2dg(a.getDate())).replace("y",this._2dg(a.getFullYear()*1))}}eXcell_calendar.prototype=new eXcell;
 eXcell_calendar.prototype.setValue=function(b){if(!b||b.toString()._dhx_trim()=="")b="";this.cell.val=new Date(b.toString());this.cell.val=="NaN"||this.cell.val=="Invalid Date"?(this.cell.val="",this.setCValue("&nbsp;",0)):this.setCValue(this._date2str(this.cell.val),this.cell.val)};
 
-//v.3.0 build 110707
+//v.3.6 build 130417
 
 /*
 Copyright DHTMLX LTD. http://www.dhtmlx.com

@@ -46,7 +46,7 @@
 	width: 18px;
 	height: 18px;
 	font-size: 1px;
-	-moz-user-select: -moz-none;
+	/*-moz-user-select: -moz-none;*/
 }
 
 .dhxform_obj_dhx_terrace div.dhxform_actv_c {
@@ -98,9 +98,9 @@
 .dhxform_obj_dhx_terrace div.dhxform_label {
 	font-family: inherit;
 	font-size: inherit;
-	/*color: #2e2e2e;*/color: #555555;
+	color: #555555;
 	overflow-x: hidden;
-	-moz-user-select: none;
+	/*-moz-user-select: none;*/
 	overflow: hidden;
 	white-space: normal;
 }
@@ -130,13 +130,15 @@
 /************************************************************************************************************************/
 /*	input														*/
 
-.dhxform_obj_dhx_terrace input.dhxform_textarea {
+.dhxform_obj_dhx_terrace input.dhxform_textarea,
+.dhxform_obj_dhx_terrace textarea.dhxform_textarea {
 	padding: 5px 2px !important;
 	margin: 0px;
 	font-size: 1em;
 	background-color: white;
 }
-.dhxform_obj_dhx_terrace input.dhxform_textarea:focus {
+.dhxform_obj_dhx_terrace input.dhxform_textarea:focus,
+.dhxform_obj_dhx_terrace textarea.dhxform_textarea:focus {
 	box-shadow: 0 0 3px #c0c0c0;
 	border: 1px solid #909090;
 	outline: none;
@@ -145,9 +147,10 @@
 	border: #cecece 1px solid;
 	font-family: Arial;
 	font-size: inherit;
-	/*color: #2e2e2e;*/color: #555555;
-	-moz-user-select: text;
+	color: #555555;
+	/*-moz-user-select: text;*/
 	font-size: 1em;
+	resize: none;
 }
 .dhxform_obj_dhx_terrace div.disabled .dhxform_textarea {
 	color: #999999;
@@ -192,7 +195,7 @@
 	background-color: #ffffff;
 	font-family: Arial;
 	font-size: inherit;
-	/*color: #2e2e2e;*/color: #555555;
+	color: #555555;
 	margin: 0px;
 	font-size: 1em;
 	padding: 3px 2px!important;
@@ -304,7 +307,13 @@
 .dhxform_obj_dhx_terrace div.dhxform_item_label_top {
 	clear: both;
 }
-
+.dhxform_obj_dhx_terrace div.dhxform_item_label_top div.dhxform_label {
+	float: none;
+}
+.dhxform_obj_dhx_terrace div.dhxform_item_label_top div.dhxform_control {
+	float: none;
+	margin-left: 0px;
+}
 /************************************************************************************************************************/
 /*	item node, absolute position											*/
 
@@ -463,10 +472,11 @@
 
 .dhxform_obj_dhx_terrace div.disabled .dhx_combo_box.dhx_terrace {
 	border: 1px solid #cecece;
+	background-color: #f0f0f0;
 }
 .dhxform_obj_dhx_terrace div.disabled .dhx_combo_box.dhx_terrace .dhx_combo_input {
 	color: #b1b1b1;
-	background-color: #ffffff;
+	background-color: #f0f0f0;
 }
 
 /************************************************************************************************************************/
@@ -488,10 +498,16 @@ div.dhx_combo_list.dhx_terrace_list:active {
 .dhxform_obj_dhx_terrace div.dhxform_item_template.dhxeditor_inside {
 	border: 1px solid #cecece;
 }
+.dhxform_obj_dhx_terrace div.dhxform_item_template.dhxeditor_inside_focus {
+	box-shadow: 0 0 3px #c0c0c0;
+	border: 1px solid #909090;
+	outline: none;
+}
 .dhxform_obj_dhx_terrace div.disabled div.dhxform_item_template.dhxeditor_inside {
 	border: 1px solid #cecece;
 }
-.dhxform_obj_dhx_terrace div.dhxform_item_template.dhxeditor_inside div.dhxcont_content_blocker {
+.dhxform_obj_dhx_terrace div.dhxform_item_template.dhxeditor_inside div.dhxcont_content_blocker,
+.dhxform_obj_dhx_terrace div.dhxform_item_template.dhxeditor_inside_focus div.dhxcont_content_blocker {
 	display: none;
 }
 .dhxform_obj_dhx_terrace div.disabled div.dhxform_item_template.dhxeditor_inside div.dhxcont_content_blocker {
@@ -506,7 +522,6 @@ div.dhx_combo_list.dhx_terrace_list:active {
 	-moz-opacity: 0.7;
 	opacity: 0.7;
 }
-
 
 /************************************************************************************************************************/
 /*	in window													*/

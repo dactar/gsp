@@ -1,4 +1,4 @@
-//v.3.5 build 120822
+//v.3.6 build 130417
 
 /*
 Copyright DHTMLX LTD. http://www.dhtmlx.com
@@ -9,7 +9,7 @@ function dhx_init_tabbars(){for(var h=document.getElementsByTagName("div"),g=0;g
 c.setImagePath(a.getAttribute("imgpath"));var b=a.getAttribute("margin");if(b!=null)c._margin=b;if(b=a.getAttribute("align"))c._align=b;(b=a.getAttribute("hrefmode"))&&c.setHrefMode(b);b=a.getAttribute("offset");if(b!=null)c._offset=b;b=a.getAttribute("tabstyle");b!=null&&c.setStyle(b);var b=a.getAttribute("select"),i=a.getAttribute("skinColors");i&&c.setSkinColors(i.split(",")[0],i.split(",")[1]);for(e=0;e<f.length;e++){var d=f[e];d.parentNode.removeChild(d);c.addTab(d.id,d.getAttribute("name"),
 d.getAttribute("width"),null,d.getAttribute("row"));var k=d.getAttribute("href");k?c.setContentHref(d.id,k):c.setContent(d.id,d);if(!c._dspN&&d.style.display=="none")d.style.display=""}f.length&&c.setTabActive(b||f[0].id);(b=a.getAttribute("oninit"))&&eval(b)}}dhtmlxEvent(window,"load",dhx_init_tabbars);
 
-//v.3.5 build 120822
+//v.3.6 build 130417
 
 /*
 Copyright DHTMLX LTD. http://www.dhtmlx.com
