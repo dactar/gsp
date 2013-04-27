@@ -2,6 +2,7 @@
 class segment
 {
 	public $db;
+	public $web_page;	
 	public $id;
 
 	function __tostring()
@@ -11,18 +12,69 @@ class segment
 
 	function __construct()
 	{
-	    global $db;
-	    $this->db = $db;
+		global $db;
+		global $web_page;	
+
+		$this->db = $db;
+		$this->web_page = $web_page;
 	}
 
 	function display_actions()
 	{
-	    	echo "
-	    	<input type='submit' name='AFFICHE' value='Afficher la table'></input>
-	    	<input type='submit' name='MODIFY' value='Modifier'></input>
-	    	<input type='submit' name='INSERT' value='Ins&eacute;rer'></input>
-	    	<input type='submit' name='DELETE' value='Supprimer'></input>";
+		$this->web_page->add_jsfile("ext/dhtmlx/dhtmlxcommon.js");
+		$this->web_page->add_jsfile("ext/dhtmlx/dhtmlxtree.js");
 
+		$this->web_page->add_script(return_query_webform_options($this->db, "type_dict_id", "", "select dict_id, code from dict_vw where parent_code = 'segmentation' and active_f = 1 order by rank_n",TRUE));
+		$this->web_page->add_script(return_query_dyn_opt_list(detsegment,PARENT_ID,$this->db,segment,appl_dict_id,id,code,TRUE));
+		$this->web_page->add_script(return_dynamic_webform_options(detsegment,parent_id,$this->db,segment,appl_dict_id,id,code,TRUE));
+		
+		$this->web_page->add_jsfile("js/gspsegment.js");
+
+	}
+
+	function display_data()
+	{
+		$this->web_page->add_html('
+<table>
+<tr>
+        <td valign="top" class="TDW200">
+        <form action="">
+                <p>
+                <input type="button" value="-" onclick="javascript:tree.closeAllItems(0);"></input>
+                <input type="button" value="+" onclick="javascript:tree.openAllItems(0);"></input>
+                </p>
+        </form>
+        </td>
+</tr>
+<tr>
+        <td valign="top">
+        <div id="segment_treeID"></div>
+        <script>
+                        tree=new dhtmlXTreeObject("segment_treeID","100%","100%",0);
+                        tree.setImagePath("ext/dhtmlx/imgs/");
+                        tree.setOnClickHandler(go_fill);
+                        tree.loadXML("index.php?MODL=GETX&TYPE=tree&OBJECT=segment");
+        </script>
+        </td>
+        <td valign="top">');
+
+        $web_form = new web_form("segment","all",TRUE);
+        $web_form->set_list_options("type_dict_id");
+        $this->web_page->add_html($web_form->display());
+
+        $this->web_page->add_html('</td>
+</tr>
+<tr>
+        <td colspan="3">');
+	
+	if ($_REQUEST[AFFICHE] != "" ) display_table($this->db,"SELECT * from segment_vw;");
+
+        $this->web_page->add_html('</td>
+</tr>
+</table>');
+
+
+		$this->web_page->render();
 	    	return "On affiche les actions disponibles"; 
 	}
 
