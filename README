@@ -7,3 +7,10 @@ Installation :
 
 1. Unpack archive content to the directory you'd like to install GSP
 2. Run the installation process in your browser using http path to directory above
+
+Upgrade : 
+
+1. Rename your GSP directory to something else
+2. Create a new GSP directory
+3. Unpack archive content to that directory
+4. Copy your config.php from your old GSP directory to this one
