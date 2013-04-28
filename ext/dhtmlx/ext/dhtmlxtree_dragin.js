@@ -1,4 +1,4 @@
-//v.3.0 build 110707
+//v.3.6 build 130417
 
 /*
 Copyright DHTMLX LTD. http://www.dhtmlx.com
@@ -10,7 +10,7 @@ dhtmlXTreeObject.prototype.makeAllDraggable=function(a){for(var b=document.getEl
 function dhx_dragSomethingInTree(){this.lWin=window;this._createDragNode=function(a){var b=document.createElement("div");b.style.position="absolute";b.innerHTML=a.innerHTML||a.value;b.className="dragSpanDiv";return b};this._preventNsDrag=function(a){(a||window.event).cancelBubble=!0;a&&a.preventDefault&&a.preventDefault();return!1};this._nonTrivialNode=function(a,b,c,d){if(this._customDrop)return this._customDrop(a,d.img.id,b.id,c?c.id:null);var e=d.img.getAttribute("image")||"",f=d.img.id||"new",
 g=d.img.getAttribute("text")||(_isIE?d.img.innerText:d.img.textContent);a[c?"insertNewNext":"insertNewItem"](c?c.id:b.id,f,g,"",e,e,e)}};
 
-//v.3.0 build 110707
+//v.3.6 build 130417
 
 /*
 Copyright DHTMLX LTD. http://www.dhtmlx.com

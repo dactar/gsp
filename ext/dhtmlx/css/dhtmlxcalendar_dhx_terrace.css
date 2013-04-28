@@ -304,6 +304,11 @@
 }
 
 /* selectors */
+.dhtmlxcalendar_skin_dhx_terrace div.dhtmlxcalendar_selector_obj,
+.dhtmlxcalendar_skin_dhx_terrace div.dhtmlxcalendar_selector_obj_arrow {
+	filter: alpha(opacity=100);
+}
+
 .dhtmlxcalendar_container.dhtmlxcalendar_skin_dhx_terrace div.dhtmlxcalendar_selector_cover {
 	left: 1px;
 	top: 30px;

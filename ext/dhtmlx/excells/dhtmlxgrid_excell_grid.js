@@ -1,4 +1,4 @@
-//v.3.0 build 110707
+//v.3.6 build 130417
 
 /*
 Copyright DHTMLX LTD. http://www.dhtmlx.com
@@ -9,7 +9,7 @@ function eXcell_grid(b){if(b){this.cell=b;this.grid=this.cell.parentNode.grid;if
 "block";var a=this.grid.getPosition(this.cell);this._sub.entBox.style.top=a[1]+"px";this._sub.entBox.style.left=a[0]+"px";this._sub.entBox.style.position="absolute";this._sub.setSizes();var b=this.grid.editStop;this.grid.editStop=function(){};this._sub.getRowById(this.cell.val)&&this._sub.setSelectedRow(this.cell.val);this._sub.setActive(!0);this.grid.editStop=b};this.detach=function(){var a=this.cell.val;this._sub.entBox.style.display="none";if(this._sub.getSelectedId()===null)return!1;this.setValue(this._sub.getSelectedId());
 this.grid.setActive(!0);return this.cell.val!=a}}eXcell_grid.prototype=new eXcell;dhtmlXGridObject.prototype.setSubGrid=function(b,a,c){if(!this._sub_grids)this._sub_grids=[];this._sub_grids[a]=[b,c];b.entBox.style.display="none";var d=this;b.attachEvent("onRowSelect",function(){d.editStop();return!0});b._chRRS=!1};
 
-//v.3.0 build 110707
+//v.3.6 build 130417
 
 /*
 Copyright DHTMLX LTD. http://www.dhtmlx.com

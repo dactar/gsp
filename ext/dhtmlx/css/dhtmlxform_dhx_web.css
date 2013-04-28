@@ -47,7 +47,7 @@
 	width: 18px;
 	height: 18px;
 	font-size: 1px;
-	-moz-user-select: -moz-none;
+	/*-moz-user-select: -moz-none;*/
 }
 .dhxform_obj_dhx_web div.dhxform_img.chbx0,
 .dhxform_obj_dhx_web div.dhxform_img.chbx1,
@@ -79,7 +79,7 @@
 	font-size: inherit;
 	color: #000000;
 	overflow-x: hidden;
-	-moz-user-select: none;
+	/*-moz-user-select: none;*/
 	overflow: hidden;
 	white-space: nowrap;
 }
@@ -119,8 +119,9 @@
 	font-family: Tahoma;
 	font-size: inherit;
 	color: #000000;
-	-moz-user-select: text;
+	/*-moz-user-select: text;*/
 	font-size: 1em;
+	resize: none;
 }
 .dhxform_obj_dhx_web div.disabled .dhxform_textarea {
 	color: #b1b1b1;
@@ -251,8 +252,13 @@
 	clear: both;
 }
 .dhxform_obj_dhx_web div.dhxform_item_label_top div.dhxform_label {
+	float: none;
 	padding: 1px 0px 1px 0px;
 	margin: 2px 0px 2px 0px;
+}
+.dhxform_obj_dhx_web div.dhxform_item_label_top div.dhxform_control {
+	float: none;
+	margin-left: 0px;
 }
 
 /************************************************************************************************************************/

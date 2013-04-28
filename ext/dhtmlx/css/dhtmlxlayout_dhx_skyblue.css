@@ -651,10 +651,7 @@ table.dhtmlxLayoutPolyContainer_dhx_skyblue td.dhtmlxLayoutSinglePoly div.dhtmlx
 }
 table.dhtmlxLayoutPolyContainer_dhx_skyblue td.dhtmlxLayoutSinglePoly div.dhtmlxPolyInfoBarCollapsedVer div.dhtmlxInfoBarLabel_collapsed_hor {
 	position: absolute;
-	/*
-	top: 28px;
-	left: 0px;
-	*/
+	
 	font-family: Tahoma;
 	font-size: 11px;
 	font-weight: normal;
@@ -667,20 +664,23 @@ table.dhtmlxLayoutPolyContainer_dhx_skyblue td.dhtmlxLayoutSinglePoly div.dhtmlx
 	-o-user-select: none;
 	user-select: none;
 	/* rotate */
-	bottom: -12px;
 	height: 18px;
 	line-height: 18px;
 	vertical-align: middle;
 	left: 0px;
+	margin-top: 30px;
 	overflow: hidden;
 	-webkit-transform: rotate(-90deg);
+	-webkit-transform-origin: left top;
+	
 	-moz-transform: rotate(-90deg);
 	-moz-transform-origin: left top;
 	
-	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+	-o-transform: rotate(-90deg);
+	-o-transform-origin: left top;
 	
-	@bottom=4px;
-	
+	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3),alpha(opacity=100);
+	background-image: url("../imgs/dhxlayout_dhx_skyblue/dhxlayout_collapsedhor2.gif");
 	
 }
 

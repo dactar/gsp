@@ -1,4 +1,4 @@
-//v.3.0 build 110707
+//v.3.6 build 130417
 
 /*
 Copyright DHTMLX LTD. http://www.dhtmlx.com
@@ -12,7 +12,7 @@ b+="<div/>";c.innerHTML=b;document.body.appendChild(c);return!0};function dhtmlx
 function dhtmlxtreeReport(e){var d=e.parentNode;d.lastChild.innerHTML="<textarea style='width:100%; height:300px;'></textarea>";for(var a=d.childNodes[1].innerHTML,c=0;c<g.length;c++){var b=g[c];a+="\n\n Tree "+c+"\n";for(b in b)typeof b[b]!="function"&&(a+=b+"="+b[b]+"\n");a+="---------------------\n";if(b.XMLLoader)try{var i=b.XMLLoader.getXMLTopNode("tree");if(document.all)a+=i.xml+"\n";else{var j=new XMLSerializer;a+=j.serializeToString(i)+"\n"}}catch(l){a+="XML not recognised\n"}a+="---------------------\n";
 for(var k in b._idpull){var f=b._idpull[k];if(typeof f=="object"){a+="Node: "+f.id;a+="  Childs: "+f.childsCount;for(var h=0;h<f.childsCount;h++)a+="  ch"+h+":"+f.childNodes[h].id;a+="\n"}}}d.lastChild.childNodes[0].value=a}dhtmlxError.catchError("ALL",dhtmlxtreeErrorReport);
 
-//v.3.0 build 110707
+//v.3.6 build 130417
 
 /*
 Copyright DHTMLX LTD. http://www.dhtmlx.com

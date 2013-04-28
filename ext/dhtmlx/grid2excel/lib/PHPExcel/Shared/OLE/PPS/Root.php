@@ -20,16 +20,6 @@
 // $Id: Root.php,v 1.9 2005/04/23 21:53:49 dufuz Exp $
 
 
-/** PHPExcel root directory */
-if (!defined('PHPEXCEL_ROOT')) {
-	/**
-	 * @ignore
-	 */
-	define('PHPEXCEL_ROOT', dirname(__FILE__) . '/../../../');
-}
-
-require_once PHPEXCEL_ROOT . 'PHPExcel/Shared/OLE/OLE_PPS.php';
-
 /**
 * Class for creating Root PPS's for OLE containers
 *
@@ -39,11 +29,12 @@ require_once PHPEXCEL_ROOT . 'PHPExcel/Shared/OLE/OLE_PPS.php';
 */
 class PHPExcel_Shared_OLE_PPS_Root extends PHPExcel_Shared_OLE_PPS
 	{
+
 	/**
-	* The temporary dir for storing the OLE file
-	* @var string
-	*/
-	public $_tmp_dir;
+	 *	Directory for temporary files
+	 *	@var string
+	 */
+	protected $_tmp_dir		= '';
 
 	/**
 	 * @param integer $time_1st A timestamp
@@ -51,7 +42,8 @@ class PHPExcel_Shared_OLE_PPS_Root extends PHPExcel_Shared_OLE_PPS
 	 */
 	public function __construct($time_1st, $time_2nd, $raChild)
 	{
-		$this->_tmp_dir = '';
+		$this->_tempDir = PHPExcel_Shared_File::sys_get_temp_dir();
+
 		parent::__construct(
 		   null,
 		   PHPExcel_Shared_OLE::Asc2Ucs('Root Entry'),
@@ -66,27 +58,13 @@ class PHPExcel_Shared_OLE_PPS_Root extends PHPExcel_Shared_OLE_PPS
 	}
 
 	/**
-	* Sets the temp dir used for storing the OLE file
-	*
-	* @access public
-	* @param string $dir The dir to be used as temp dir
-	* @return true if given dir is valid, false otherwise
-	*/
-	public function setTempDir($dir)
-	{
-		if (is_dir($dir)) {
-			$this->_tmp_dir = $dir;
-			return true;
-		}
-		return false;
-	}
-
-	/**
 	* Method for saving the whole OLE container (including files).
 	* In fact, if called with an empty argument (or '-'), it saves to a
 	* temporary file and then outputs it's contents to stdout.
+	* If a resource pointer to a stream created by fopen() is passed
+	* it will be used, but you have to close such stream by yourself.
 	*
-	* @param string $filename The name of the file where to save the OLE container
+	* @param string|resource $filename The name of the file or stream where to save the OLE container.
 	* @access public
 	* @return mixed true on success
 	*/
@@ -94,12 +72,13 @@ class PHPExcel_Shared_OLE_PPS_Root extends PHPExcel_Shared_OLE_PPS
 	{
 		// Initial Setting for saving
 		$this->_BIG_BLOCK_SIZE  = pow(2,
-					  ((isset($this->_BIG_BLOCK_SIZE))? $this->_adjust2($this->_BIG_BLOCK_SIZE)  : 9));
+					  ((isset($this->_BIG_BLOCK_SIZE))? self::_adjust2($this->_BIG_BLOCK_SIZE)  : 9));
 		$this->_SMALL_BLOCK_SIZE= pow(2,
-					  ((isset($this->_SMALL_BLOCK_SIZE))?  $this->_adjust2($this->_SMALL_BLOCK_SIZE): 6));
+					  ((isset($this->_SMALL_BLOCK_SIZE))?  self::_adjust2($this->_SMALL_BLOCK_SIZE): 6));
 
-		// Open temp file if we are sending output to stdout
-		if ($filename == '-' || $filename == '') {
+		if (is_resource($filename)) {
+		    $this->_FILEH_ = $filename;
+		} else if ($filename == '-' || $filename == '') {
 			$this->_tmp_filename = tempnam($this->_tmp_dir, "OLE_PPS_Root");
 			$this->_FILEH_ = fopen($this->_tmp_filename,"w+b");
 			if ($this->_FILEH_ == false) {
@@ -107,9 +86,9 @@ class PHPExcel_Shared_OLE_PPS_Root extends PHPExcel_Shared_OLE_PPS
 			}
 		} else {
 			$this->_FILEH_ = fopen($filename, "wb");
-			if ($this->_FILEH_ == false) {
-				throw new Exception("Can't open $filename. It may be in use or protected.");
-			}
+		}
+		if ($this->_FILEH_ == false) {
+			throw new Exception("Can't open $filename. It may be in use or protected.");
 		}
 		// Make an array of PPS's (for Save)
 		$aList = array();
@@ -128,16 +107,10 @@ class PHPExcel_Shared_OLE_PPS_Root extends PHPExcel_Shared_OLE_PPS
 		$this->_savePps($aList);
 		// Write Big Block Depot and BDList and Adding Header informations
 		$this->_saveBbd($iSBDcnt, $iBBcnt, $iPPScnt);
-		// Close File, send it to stdout if necessary
-		if (($filename == '-') || ($filename == '')) {
-			fseek($this->_FILEH_, 0);
-			fpassthru($this->_FILEH_);
-			fclose($this->_FILEH_);
-			// Delete the temporary file.
-			unlink($this->_tmp_filename);
-		} else {
-			fclose($this->_FILEH_);
-		}
+
+		if (!is_resource($filename)) {
+ 			fclose($this->_FILEH_);
+ 		}
 
 		return true;
 	}
@@ -155,7 +128,8 @@ class PHPExcel_Shared_OLE_PPS_Root extends PHPExcel_Shared_OLE_PPS
 		list($iSBDcnt, $iBBcnt, $iPPScnt) = array(0,0,0);
 		$iSmallLen = 0;
 		$iSBcnt = 0;
-		for ($i = 0; $i < count($raList); ++$i) {
+		$iCount = count($raList);
+		for ($i = 0; $i < $iCount; ++$i) {
 			if ($raList[$i]->Type == PHPExcel_Shared_OLE::OLE_PPS_TYPE_FILE) {
 				$raList[$i]->Size = $raList[$i]->_DataLen();
 				if ($raList[$i]->Size < PHPExcel_Shared_OLE::OLE_DATA_SIZE_SMALL) {
@@ -187,7 +161,7 @@ class PHPExcel_Shared_OLE_PPS_Root extends PHPExcel_Shared_OLE_PPS
 	* @see save()
 	* @return integer
 	*/
-	public function _adjust2($i2)
+	private static function _adjust2($i2)
 	{
 		$iWk = log($i2)/log(2);
 		return ($iWk > floor($iWk))? floor($iWk)+1:$iWk;
@@ -265,7 +239,8 @@ class PHPExcel_Shared_OLE_PPS_Root extends PHPExcel_Shared_OLE_PPS
 			fwrite($FILE, pack("V", $iAll+$i));
 		}
 		if ($i < $i1stBdL) {
-			for ($j = 0; $j < ($i1stBdL-$i); ++$j) {
+			$jB = $i1stBdL - $i;
+			for ($j = 0; $j < $jB; ++$j) {
 				fwrite($FILE, (pack("V", -1)));
 			}
 		}
@@ -283,28 +258,27 @@ class PHPExcel_Shared_OLE_PPS_Root extends PHPExcel_Shared_OLE_PPS
 		$FILE = $this->_FILEH_;
 
 		// cycle through PPS's
-		for ($i = 0; $i < count($raList); ++$i) {
+		$iCount = count($raList);
+		for ($i = 0; $i < $iCount; ++$i) {
 			if ($raList[$i]->Type != PHPExcel_Shared_OLE::OLE_PPS_TYPE_DIR) {
 				$raList[$i]->Size = $raList[$i]->_DataLen();
 				if (($raList[$i]->Size >= PHPExcel_Shared_OLE::OLE_DATA_SIZE_SMALL) ||
 					(($raList[$i]->Type == PHPExcel_Shared_OLE::OLE_PPS_TYPE_ROOT) && isset($raList[$i]->_data)))
 				{
 					// Write Data
-					if (isset($raList[$i]->_PPS_FILE)) {
-						$iLen = 0;
-						fseek($raList[$i]->_PPS_FILE, 0); // To The Top
-						while($sBuff = fread($raList[$i]->_PPS_FILE, 4096)) {
-							$iLen += strlen($sBuff);
-							fwrite($FILE, $sBuff);
-						}
-					} else {
+					//if (isset($raList[$i]->_PPS_FILE)) {
+					//	$iLen = 0;
+					//	fseek($raList[$i]->_PPS_FILE, 0); // To The Top
+					//	while($sBuff = fread($raList[$i]->_PPS_FILE, 4096)) {
+					//		$iLen += strlen($sBuff);
+					//		fwrite($FILE, $sBuff);
+					//	}
+					//} else {
 						fwrite($FILE, $raList[$i]->_data);
-					}
+					//}
 
 					if ($raList[$i]->Size % $this->_BIG_BLOCK_SIZE) {
-						for ($j = 0; $j < ($this->_BIG_BLOCK_SIZE - ($raList[$i]->Size % $this->_BIG_BLOCK_SIZE)); ++$j) {
-							fwrite($FILE, "\x00");
-						}
+						fwrite($FILE, str_repeat("\x00", $this->_BIG_BLOCK_SIZE - ($raList[$i]->Size % $this->_BIG_BLOCK_SIZE)));
 					}
 					// Set For PPS
 					$raList[$i]->_StartBlock = $iStBlk;
@@ -313,11 +287,11 @@ class PHPExcel_Shared_OLE_PPS_Root extends PHPExcel_Shared_OLE_PPS
 								(($raList[$i]->Size % $this->_BIG_BLOCK_SIZE)? 1: 0));
 				}
 				// Close file for each PPS, and unlink it
-				if (isset($raList[$i]->_PPS_FILE)) {
-					fclose($raList[$i]->_PPS_FILE);
-					$raList[$i]->_PPS_FILE = null;
-					unlink($raList[$i]->_tmp_filename);
-				}
+				//if (isset($raList[$i]->_PPS_FILE)) {
+				//	fclose($raList[$i]->_PPS_FILE);
+				//	$raList[$i]->_PPS_FILE = null;
+				//	unlink($raList[$i]->_tmp_filename);
+				//}
 			}
 		}
 	}
@@ -334,7 +308,8 @@ class PHPExcel_Shared_OLE_PPS_Root extends PHPExcel_Shared_OLE_PPS
 		$FILE = $this->_FILEH_;
 		$iSmBlk = 0;
 
-		for ($i = 0; $i < count($raList); ++$i) {
+		$iCount = count($raList);
+		for ($i = 0; $i < $iCount; ++$i) {
 			// Make SBD, small data string
 			if ($raList[$i]->Type == PHPExcel_Shared_OLE::OLE_PPS_TYPE_FILE) {
 				if ($raList[$i]->Size <= 0) {
@@ -344,24 +319,23 @@ class PHPExcel_Shared_OLE_PPS_Root extends PHPExcel_Shared_OLE_PPS
 					$iSmbCnt = floor($raList[$i]->Size / $this->_SMALL_BLOCK_SIZE)
 								  + (($raList[$i]->Size % $this->_SMALL_BLOCK_SIZE)? 1: 0);
 					// Add to SBD
-					for ($j = 0; $j < ($iSmbCnt-1); ++$j) {
+					$jB = $iSmbCnt - 1;
+					for ($j = 0; $j < $jB; ++$j) {
 						fwrite($FILE, pack("V", $j+$iSmBlk+1));
 					}
 					fwrite($FILE, pack("V", -2));
 
-					// Add to Data String(this will be written for RootEntry)
-					if ($raList[$i]->_PPS_FILE) {
-						fseek($raList[$i]->_PPS_FILE, 0); // To The Top
-						while ($sBuff = fread($raList[$i]->_PPS_FILE, 4096)) {
-							$sRes .= $sBuff;
-						}
-					} else {
+					//// Add to Data String(this will be written for RootEntry)
+					//if ($raList[$i]->_PPS_FILE) {
+					//	fseek($raList[$i]->_PPS_FILE, 0); // To The Top
+					//	while ($sBuff = fread($raList[$i]->_PPS_FILE, 4096)) {
+					//		$sRes .= $sBuff;
+					//	}
+					//} else {
 						$sRes .= $raList[$i]->_data;
-					}
+					//}
 					if ($raList[$i]->Size % $this->_SMALL_BLOCK_SIZE) {
-						for ($j = 0; $j < ($this->_SMALL_BLOCK_SIZE - ($raList[$i]->Size % $this->_SMALL_BLOCK_SIZE)); ++$j) {
-							$sRes .= "\x00";
-						}
+						$sRes .= str_repeat("\x00",$this->_SMALL_BLOCK_SIZE - ($raList[$i]->Size % $this->_SMALL_BLOCK_SIZE));
 					}
 					// Set for PPS
 					$raList[$i]->_StartBlock = $iSmBlk;
@@ -371,7 +345,8 @@ class PHPExcel_Shared_OLE_PPS_Root extends PHPExcel_Shared_OLE_PPS
 		}
 		$iSbCnt = floor($this->_BIG_BLOCK_SIZE / PHPExcel_Shared_OLE::OLE_LONG_INT_SIZE);
 		if ($iSmBlk % $iSbCnt) {
-			for ($i = 0; $i < ($iSbCnt - ($iSmBlk % $iSbCnt)); ++$i) {
+			$iB = $iSbCnt - ($iSmBlk % $iSbCnt);
+			for ($i = 0; $i < $iB; ++$i) {
 				fwrite($FILE, pack("V", -1));
 			}
 		}
@@ -387,16 +362,15 @@ class PHPExcel_Shared_OLE_PPS_Root extends PHPExcel_Shared_OLE_PPS
 	public function _savePps(&$raList)
 	{
 		// Save each PPS WK
-		for ($i = 0; $i < count($raList); ++$i) {
+		$iC = count($raList);
+		for ($i = 0; $i < $iC; ++$i) {
 			fwrite($this->_FILEH_, $raList[$i]->_getPpsWk());
 		}
 		// Adjust for Block
 		$iCnt = count($raList);
 		$iBCnt = $this->_BIG_BLOCK_SIZE / PHPExcel_Shared_OLE::OLE_PPS_SIZE;
 		if ($iCnt % $iBCnt) {
-			for ($i = 0; $i < (($iBCnt - ($iCnt % $iBCnt)) * PHPExcel_Shared_OLE::OLE_PPS_SIZE); ++$i) {
-				fwrite($this->_FILEH_, "\x00");
-			}
+			fwrite($this->_FILEH_, str_repeat("\x00",($iBCnt - ($iCnt % $iBCnt)) * PHPExcel_Shared_OLE::OLE_PPS_SIZE));
 		}
 	}
 
@@ -462,7 +436,8 @@ class PHPExcel_Shared_OLE_PPS_Root extends PHPExcel_Shared_OLE_PPS
 		}
 		// Adjust for Block
 		if (($iAllW + $iBdCnt) % $iBbCnt) {
-			for ($i = 0; $i < ($iBbCnt - (($iAllW + $iBdCnt) % $iBbCnt)); ++$i) {
+			$iBlock = ($iBbCnt - (($iAllW + $iBdCnt) % $iBbCnt));
+			for ($i = 0; $i < $iBlock; ++$i) {
 				fwrite($FILE, pack("V", -1));
 			}
 		}
@@ -479,11 +454,12 @@ class PHPExcel_Shared_OLE_PPS_Root extends PHPExcel_Shared_OLE_PPS
 				fwrite($FILE, pack("V", $iBsize+$iSbdSize+$iPpsCnt+$i));
 			}
 			if (($iBdCnt-$i1stBdL) % ($iBbCnt-1)) {
-				for ($i = 0; $i < (($iBbCnt - 1) - (($iBdCnt - $i1stBdL) % ($iBbCnt - 1))); ++$i) {
+				$iB = ($iBbCnt - 1) - (($iBdCnt - $i1stBdL) % ($iBbCnt - 1));
+				for ($i = 0; $i < $iB; ++$i) {
 					fwrite($FILE, pack("V", -1));
 				}
 			}
 			fwrite($FILE, pack("V", -2));
 		}
 	}
-	}
+}

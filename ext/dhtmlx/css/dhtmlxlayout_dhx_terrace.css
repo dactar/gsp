@@ -15,10 +15,6 @@ table.dhtmlxLayoutPolyContainer_dhx_terrace td.dhtmlxLayoutSinglePoly {
 	background-color: #cecece;
 	border-radius: 3px;
 }
-table.dhtmlxLayoutPolyContainer_dhx_terrace td.dhtmlxLayoutSinglePoly div:last-child {
-	border-bottom-left-radius: 3px;
-	border-bottom-right-radius: 3px;
-}
 /* window content */
 table.dhtmlxLayoutPolyContainer_dhx_terrace td.dhtmlxLayoutSinglePoly div.dhtmlxWindowMainContent {
 	border: #a4bed4 1px solid;
@@ -62,11 +58,12 @@ table.dhtmlxLayoutPolyContainer_dhx_terrace td.dhtmlxLayoutSinglePoly div.dhtmlx
 table.dhtmlxLayoutPolyContainer_dhx_terrace td.dhtmlxLayoutSinglePoly div.dhtmlxPolyInfoBar div.dhtmlxInfoBarButtonsFake {
 	position: absolute;
 	width: 28px;
-	height: 37px;
+	height: 36px;
 	margin: 0px;
-	top: 0px;
+	top: 1px;
 	right: -1px;
 	overflow: hidden;
+	background-color: #f8f8f8;
 }
 /* infobar label */
 table.dhtmlxLayoutPolyContainer_dhx_terrace td.dhtmlxLayoutSinglePoly div.dhtmlxPolyInfoBar div.dhtmlxInfoBarLabel {
@@ -173,16 +170,19 @@ table.dhtmlxLayoutPolyContainer_dhx_terrace td.dhtmlxLayoutSinglePoly div.dhtmlx
 }
 table.dhtmlxLayoutPolyContainer_dhx_terrace td.dhtmlxLayoutSinglePoly div.dhtmlxPolyInfoBarCollapsedHor div.dhtmlxInfoButtonShowHide_ver {
 	position: absolute;
-	width: 16px;
+	width: 20px;
 	height: 16px;
 	top: 1px;
-	right: 4px;
+	right: 0px;
 	font-family: Tahoma;
 	font-size: 2px;
 	text-align: center;
 	vertical-align: top;
 	cursor: pointer;
+	z-index: 1;
+	background-color: #cecece;
 	background-repeat: no-repeat;
+	background-position: -1px center;
 }
 .dhxLayoutButton_dhx_terrace_ver2t {
 	background-image: url("../imgs/dhxlayout_dhx_terrace/dhxlayout_btns.gif");
@@ -450,6 +450,7 @@ div.dhtmlxLayoutPolyProgressGlobal_dhx_terrace {
 	-moz-opacity: 0.15;
 	opacity: 0.15;
 	background-color: #93C0E7;
+	z-index: 1;
 }
 div.dhtmlxLayoutPolyProgressBGIMGGlobal_dhx_terrace {
 	position: absolute;
@@ -460,6 +461,7 @@ div.dhtmlxLayoutPolyProgressBGIMGGlobal_dhx_terrace {
 	background-image: url("../imgs/dhxlayout_dhx_terrace/dhxlayout_progress_global.gif");
 	background-repeat: no-repeat;
 	background-position: center center;
+	z-index: 1;
 }
 /* status bar */
 div.dhxcont_global_layout_area div.dhxcont_sb_container {
@@ -597,12 +599,11 @@ table.dhtmlxLayoutPolyContainer_dhx_terrace td.dhtmlxLayoutSinglePoly div.dhtmlx
 }
 table.dhtmlxLayoutPolyContainer_dhx_terrace td.dhtmlxLayoutSinglePoly div.dhtmlxPolyInfoBarCollapsedVer div.dhtmlxInfoBarLabel_collapsed_hor {
 	position: absolute;
-	top: 28px;
-	left: 0px;
+	
 	font-family: Tahoma;
 	font-size: 11px;
 	font-weight: normal;
-	color: #666666;
+	color: #f5f5f5;
 	white-space: nowrap;
 	cursor: default;
 	-webkit-user-select: none;
@@ -610,6 +611,24 @@ table.dhtmlxLayoutPolyContainer_dhx_terrace td.dhtmlxLayoutSinglePoly div.dhtmlx
 	-moz-user-select: none;
 	-o-user-select: none;
 	user-select: none;
+	/* rotate */
+	height: 18px;
+	line-height: 18px;
+	vertical-align: middle;
+	left: 0px;
+	margin-top: 30px;
+	overflow: hidden;
+	-webkit-transform: rotate(-90deg);
+	-webkit-transform-origin: left top;
+	
+	-moz-transform: rotate(-90deg);
+	-moz-transform-origin: left top;
+	
+	-o-transform: rotate(-90deg);
+	-o-transform-origin: left top;
+	
+	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3),alpha(opacity=100);
+	background-color: #CECECE;
 }
 
 

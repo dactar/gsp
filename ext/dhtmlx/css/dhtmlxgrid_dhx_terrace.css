@@ -128,3 +128,7 @@ div.gridbox_dhx_terrace td.filter input, div.gridbox_dhx_terrace td.filter selec
 	background:#fff;
 	box-shadow:none;
 }
+.gridbox_dhx_terrace .dhx_combo_box.dhx_terrace{
+    height: 30px !important;
+    margin-left: -20px;
+}
