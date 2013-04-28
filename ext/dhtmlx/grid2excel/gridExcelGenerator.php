@@ -8,7 +8,8 @@ class gridExcelGenerator {
 	public $fontFamily = 'Helvetica';
 	public $headerFontSize = 9;
 	public $gridFontSize = 9;
-	
+	public $widthProportionality = 6;
+
 	public $strip_tags = false;
 
 	public $bgColor = 'D1E5FE';
@@ -17,9 +18,10 @@ class gridExcelGenerator {
 	public $scaleTwoColor = 'E3EFFF';
 	public $textColor = '000000';
 
-	public $headerLinesNum = 3;
-	public $headerFileName = 'header.xls';
-//	public $headerFileName = false;
+	public $headerLinesNum = 0;
+//	public $headerFileName = 'header.xls';
+	public $headerFileName = false;
+	public $outputType = 'Excel2007'; // Excel2003 or Excel2007
 
 
 	public $creator = 'DHTMLX LTD';
@@ -29,6 +31,7 @@ class gridExcelGenerator {
 	public $dsc = '';
 	public $keywords = '';
 	public $category = '';
+	public $without_header = false;
 	
 	private $footerColumns = Array();
 	private $columns = Array();
@@ -38,11 +41,14 @@ class gridExcelGenerator {
 	private $profile;
 	private $header = null;
 	private $footer = null;
+	private $coll_options = Array();
+	private $hiddenCols = Array();
 
 	public function printGrid($xml) {
 		$this->headerParse($xml->head);
 		$this->footerParse($xml->foot);
 		$this->mainParse($xml);
+		$this->collectionsParse($xml->coll_options);
 		$this->rowsParse($xml->row);
 		$this->printGridExcel();
 	}
@@ -73,8 +79,8 @@ class gridExcelGenerator {
 				break;
 		}
 	}
-	
-	
+
+
 	private function mainParse($xml) {
 		$this->profile = (string) $xml->attributes()->profile;
 		$this->setProfile();
@@ -82,16 +88,30 @@ class gridExcelGenerator {
 			$this->headerLinesNum = 0;
 			$this->headerFileName = false;
 		}
+		if (isset($xml->attributes()->without_header))
+			$this->without_header = true;
 	}
 
 	private function headerParse($header) {
 		if (isset($header->column)) {
-			$columns = $header->column;
-			$summaryWidth = 0;
-			$this->columns[0] = Array();
-			foreach ($columns as $column) {
+			$columns = Array($header->column);
+		} else {
+			$columns = $header->columns;
+		}
+		$summaryWidth = 0;
+		$i = 0;
+		foreach ($columns as $row) {
+			$this->columns[$i] = Array();
+			$k = 0;
+			foreach ($row as $column) {
 				$columnArr = Array();
-				$columnArr['text'] = trim((string) $column);
+				$columnArr['hidden'] = ($column->attributes()->hidden == 'true') ? true : false;
+				if ($columnArr['hidden'] == true) {
+					$this->hiddenCols[$k] = true;
+					$k++;
+					continue;
+				}
+				$columnArr['text'] = $this->strip(trim((string) $column));
 				$columnArr['width'] = trim((string) $column->attributes()->width);
 				$columnArr['type'] = trim((string) $column->attributes()->type);
 				$columnArr['align'] = trim((string) $column->attributes()->align);
@@ -101,42 +121,31 @@ class gridExcelGenerator {
 				if (isset($column->attributes()->rowspan)) {
 					$columnArr['rowspan'] = (int) $column->attributes()->rowspan;
 				}
-				$columnArr['excel_type'] = (isset($column->attributes()->excel_type)) ? trim((String) $column->attributes()->excel_type) : "";
-				$summaryWidth += $columnArr['width'];
-				$this->columns[0][] = $columnArr;
-			}
-		} else {
-			if (isset($header->columns)) {
-				$columns = $header->columns;
-				$summaryWidth = 0;
-				$i = 0;
-				foreach ($columns as $row) {
-					$this->columns[$i] = Array();
-					foreach ($row as $column) {
-						$columnArr = Array();
-						$columnArr['text'] = $this->strip(trim((string) $column));
-						$columnArr['width'] = trim((string) $column->attributes()->width);
-						$columnArr['type'] = trim((string) $column->attributes()->type);
-						$columnArr['align'] = trim((string) $column->attributes()->align);
-						if (isset($column->attributes()->colspan)) {
-							$columnArr['colspan'] = (int) $column->attributes()->colspan;
-						}
-						if (isset($column->attributes()->rowspan)) {
-							$columnArr['rowspan'] = (int) $column->attributes()->rowspan;
-						}
-						if ($i == 0) {
-							$summaryWidth += $columnArr['width'];
-							$columnArr['excel_type'] = (isset($column->attributes()->excel_type)) ? trim((String) $column->attributes()->excel_type) : "";
-						}
-						$this->columns[$i][] = $columnArr;
-					}
-					$i++;
+				if ($i == 0) {
+					$summaryWidth += $columnArr['width'];
+					$columnArr['excel_type'] = (isset($column->attributes()->excel_type)) ? trim((String) $column->attributes()->excel_type) : "";
 				}
+				$this->columns[$i][] = $columnArr;
+				$k++;
 			}
+			$i++;
 		}
 		$this->summaryWidth = $summaryWidth;
 	}
 
+
+	private function collectionsParse($coll_options) {
+		for ($i = 0; $i < count($coll_options); $i++) {
+			$index = (int) $coll_options[$i]->attributes()->for;
+			$this->coll_options[$index] = Array();
+			for ($j = 0; $j < count($coll_options[$i]->item); $j++) {
+				$item = $coll_options[$i]->item[$j];
+				$value = (string) $item->attributes()->value;
+				$label = (string) $item->attributes()->label;
+				$this->coll_options[$index][$value] = $label;
+			}
+		}
+	}
 
 	private function footerParse($footer) {
 		if (isset($footer->columns)) {
@@ -174,43 +183,48 @@ class gridExcelGenerator {
 			$rowArr = Array();
 			$cellColors = Array();
 			$cells = $row->cell;
+			$k = 0;
 			foreach ($cells as $cell) {
-				$rowArr[] = $this->strip(trim((string) $cell));
-				$colors = Array();
+				if (isset($this->hiddenCols[$k])) {
+					$k++;
+					continue;
+				}
+				$cell_p = Array();
+				if (isset($this->coll_options[$k][trim((string) $cell)]))
+					$cell_p['text'] = $this->strip($this->coll_options[$k][trim((string) $cell)]);
+				else
+					$cell_p['text'] = $this->strip(trim((string) $cell));
+
 				if (isset($cell->attributes()->bgColor)) {
-					$colors['bg'] = (string) $cell->attributes()->bgColor;
+					$cell_p['bg'] = (string) $cell->attributes()->bgColor;
 				} else {
-					if ($i%2 == 0) {
-						$color = $this->scaleOneColor;
-					} else {
-						$color = $this->scaleTwoColor;
-					}
-					$colors['bg'] = $color;
+					$color = ($i%2 == 0) ? $this->scaleOneColor : $this->scaleTwoColor;
+					$cell_p['bg'] = $color;
 				}
 				if (isset($cell->attributes()->textColor)) {
-					$colors['text'] = (string) $cell->attributes()->textColor;
+					$cell_p['textColor'] = (string) $cell->attributes()->textColor;
 				} else {
-					$colors['text'] = $this->textColor;
+					$cell_p['textColor'] = $this->textColor;
 				}
-				$cellColors[] = $colors;
+				$cell_p['bold'] = (isset($cell->attributes()->bold) && $cell->attributes()->bold == 'bold') ? true : false;
+				$cell_p['italic'] = (isset($cell->attributes()->italic) && $cell->attributes()->italic == 'italic') ? true : false;
+				$cell_p['align'] = isset($cell->attributes()->align) ? $cell->attributes()->align : false;
+				$rowArr[] = $cell_p;
+				$k++;
 			}
 			$this->rows[] = $rowArr;
-			$this->cellColors[] = $cellColors;
 			$i++;
 		}
 	}
 
-
 	public function printGridExcel() {
 		$this->wrapper = new gridExcelWrapper();
 		$this->wrapper->createXLS($this->headerFileName, $this->headerLinesNum, $this->creator, $this->lastModifiedBy, $this->title, $this->subject, $this->dsc, $this->keywords, $this->category);
-		$this->wrapper->headerPrint($this->columns, $this->summaryWidth, $this->headerHeight, $this->textColor, $this->bgColor, $this->lineColor, $this->headerFontSize, $this->fontFamily);
-
-		for ($i = 0; $i < count($this->rows); $i++) {
-			$this->wrapper->rowPrint($this->rows[$i], $this->cellColors[$i], $this->rowHeight, $this->lineColor, $this->gridFontSize, $this->fontFamily);
-		}
+		$this->wrapper->headerPrint($this->columns, $this->widthProportionality, $this->headerHeight, $this->textColor, $this->bgColor, $this->lineColor, $this->headerFontSize, $this->fontFamily, $this->without_header);
+		for ($i = 0; $i < count($this->rows); $i++)
+			$this->wrapper->rowPrint($this->rows[$i], $this->rowHeight, $this->lineColor, $this->gridFontSize, $this->fontFamily);
 		$this->wrapper->footerPrint($this->footerColumns, $this->headerHeight, $this->textColor, $this->bgColor, $this->lineColor, $this->headerFontSize, $this->fontFamily);
-		$this->wrapper->outXLS($this->title);
+		$this->wrapper->outXLS($this->title, $this->outputType);
 	}
 
 	private function strip($param) {
