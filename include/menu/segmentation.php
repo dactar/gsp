@@ -5,49 +5,6 @@ if (isset($web_page))
 }
 
 $segment = new segment();
-function form_err()
-{
-	if ($_POST[APPL_ID] == "")
-	{
-		print "<div class='ERR'>Erreur : le segment n'a pas d'application</div>";
-	}
-	if ($_POST[TYPE_ID] == "")
-	{
-		print "<div class='ERR'>Erreur : le segment n'a pas de type</div>";
-	}
-}
-
-if ($_REQUEST[ACTION] == "Sauvegarder"  && $_REQUEST[code] != "")
-{
-        if ($_REQUEST[appl_dict_id] != "" && $_REQUEST[type_dict_id] != "")
-        {
-                $segment->insert_submit();
-        }
-        else
-        {
-                form_err();
-        }
-        exit;
-}
-
-if ($_REQUEST[ACTION] == "Valider" && $_REQUEST[id] != "" && $_REQUEST[code] != "")
-{
-        if ($_REQUEST[appl_dict_id] != "" && $_REQUEST[type_dict_id] != "")
-        {
-                $segment->update_submit();
-        }
-        else
-        {
-                form_err();
-        }
-        exit;
-}
-
-if ($_REQUEST[ACTION] == "Supprimer" && $_REQUEST[id] != "")
-{
-        $segment->delete_submit();
-        exit;
-}
 
 ?>
 
