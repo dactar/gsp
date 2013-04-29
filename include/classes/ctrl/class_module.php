@@ -44,8 +44,10 @@ class module
 		case "display":		$this->display_data(); break;
 	        case "create":          $this->create_prepare(); break;
 		case "Sauvegarder":	$this->create_submit(); break;
+		case "Insï¿½rer":  	$this->create_submit(); break;
 		case "Modification":	$this->update_prepare(); break;
 		case "Valider":         $this->update_submit(); break;
+		case "Modifier":	$this->update_submit(); break;
 		case "Supprimer":	$this->delete(); break;
 		case "Installer":	$this->install(); break;
 		case "Activer":		$this->enable(); break;
