@@ -29,7 +29,7 @@
 	<item type="fieldset" className="fs_box" name="dat4" inputWidth="auto" label="Codes externes" width="125">
 		<item type="label" labelWidth="15"/>
                 <item type="newcolumn"/>
-		<item type="button" value="..."/>
+		<item type="button" value="..." width="32"/>
 	</item>
 </item>
 <item type="block" inputWidth="auto">
@@ -42,13 +42,13 @@
 			<item type="hidden" name="segment_id"/>
 	        	<item type="input" name="segment_code" label="Objet"/>
                 	<item type="newcolumn"/>
-                	<item type="button" name="segment_list" value="..."/>
+                	<item type="button" name="segment_list" value="..." width="32"/>
 		</item>	
 		<item type="block" inputWidth="auto">
 			<item type="hidden" name="package_id"/>
                 	<item type="input" name="package_code" label="Version"/>
                 	<item type="newcolumn"/>
-                	<item type="button" name="package_list" value="..."/>
+                	<item type="button" name="package_list" value="..." width="32"/>
 		</item>	
 	</item>
 	<item type="fieldset" name="dat3" inputWidth="auto" label="Dates" width="400">
@@ -84,20 +84,20 @@
 			<item type="hidden" name="owner_id"/>
 			<item type="input" name="owner_name" label="Suivi"/>
 			<item type="newcolumn"/>
-			<item type="button" name="owner_list" value="..."/>
+			<item type="button" name="owner_list" value="..." width="32"/>
 			<item type="newcolumn"/>
-			<item type="button" value="A"/>
+			<item type="button" value="A" width="32"/>
 			<item type="newcolumn"/>
-			<item type="button" value="X"/>	
+			<item type="button" value="X" width="32"/>	
 		</item>
 
 		<item type="block" inputWidth="auto">
 			<item type="hidden" name="contact_id"/>	
 			<item type="input" name="contact_name" label="Contact"/>
 			<item type="newcolumn"/>
-			<item type="button" name="contact_list" value="..."/>
+			<item type="button" name="contact_list" value="..." width="32"/>
 			<item type="newcolumn"/>
-			<item type="button" value="A"/>
+			<item type="button" value="A" width="32"/>
 		</item>
 	</item>
 	<item type="fieldset" name="dat7" inputWidth="auto" width="452" label="Remarque">

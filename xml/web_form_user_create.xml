@@ -12,7 +12,7 @@
 			<item type="hidden" name="contact_id"/>
 			<item type="input" value="" name="CONTACT_CODE" label="Contact" readonly="true"/>
 			<item type="newcolumn"/>
-			<item type="button" name="contact_search" value="..."/>
+			<item type="button" name="contact_search" value="..." width="32"/>
 		</item>
 		<item type="block" inputWidth="auto">
 			<item type="input" value="" name="CONTACT_NAME" label="Nom" readonly="true"/>
