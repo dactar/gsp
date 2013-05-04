@@ -4,7 +4,7 @@ function return_query_webform_options($db,$inputname,$current,$query,$return=FAL
 	$output="<script type='text/javascript'>\nfunction webform_load_optlist_static_$inputname()\n{\n";
 	$output.="var opts=form.getOptions('$inputname');";
 	$output.="opts.length = 0;";
-	$output.="nopts.add(new Option('',0))";
+	$output.="\nopts.add(new Option('',0))";
 	$row = $db->prepare($query);
         $row->execute();
        	$Cols = $row->columnCount();
