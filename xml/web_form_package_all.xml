@@ -9,9 +9,9 @@
 			<item type="input" value="" name="SEL_APPL_DESC" inputWidth="260" label="Description" readonly="true"/>
 		</item>
 		<item type="block" inputWidth="auto">
-			<item type="label" label="" labelWidth="450"/>
+			<item type="label" label="" labelWidth="330"/>
 			<item type="newcolumn"/>
-			<item type="button" name="assign_appl" value="---->"/>
+			<item type="button" name="assign_appl" value="---->" width="48"/>
 		</item>
 		<item type="template" name="SEL_REMARK" value="" label="" className="I3"/>
 	</item>
