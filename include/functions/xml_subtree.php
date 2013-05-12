@@ -89,6 +89,7 @@ function xml_subtree($db,$table,$dict_id,$parent_id)
 			print "<userdata name=\"parent_colid\">$group_dict_id</userdata>\n";
                         print "<userdata name=\"code\">$subresult[code]</userdata>\n";
                         print "<userdata name=\"name\">$subresult[name]</userdata>\n";
+			print "<userdata name=\"language_dict_id\">$subresult[language_dict_id]</userdata>\n";
 			print "<userdata name=\"group_dict_id\">$subresult[group_dict_id]</userdata>\n";
                         print "<userdata name=\"group_code\">$subresult[group_code]</userdata>\n";
                         print "<userdata name=\"organisation_code\">$subresult[organisation_code]</userdata>\n";

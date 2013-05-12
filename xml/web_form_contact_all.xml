@@ -23,6 +23,7 @@
 			<item type="hidden" name="id"/>
 			<item type="input" value="" validate="NotEmpty" inputWidth="100" name="code" label="Code"/>
 			<item type="input" value="" validate="NotEmpty" inputWidth="260" name="name" label="Nom"/>
+			<item type="select" value="" name="language_dict_id" label="Langue"/>
 			<item type="hidden" name="group_dict_id"/>
 			<item type="input" value="" name="ORGA_GROUP_CODE" label="Groupe" readonly="true"/>
 			<item type="input" value="" name="ORGA_PARENT_CODE" label="Organisation" readonly="true"/>
