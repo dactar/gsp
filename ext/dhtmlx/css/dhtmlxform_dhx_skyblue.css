@@ -204,17 +204,21 @@
 /************************************************************************************************************************/
 /*	fieldset													*/
 
+.dhxform_obj_dhx_skyblue div.fs_dhxform_item_label_left {
+	padding: 5px 5px 5px 2px;
+}
+.dhxform_obj_dhx_skyblue div.fs_dhxform_item_label_left fieldset.dhxform_fs div.dhxform_base_nested.dhxform_fs_nested {
+	margin-right: 19px;
+	margin-left: 5px;
+}
+
 .dhxform_obj_dhx_skyblue fieldset.dhxform_fs {
 	border: #a4bed4 1px solid;
-	margin-top: 5px;
-	padding: 5px;
-	adisplay: inline;
+	margin: 0px;
+	padding: 5px 0px 5px 0px;
 	clear: left;
 	width: 100%;
 }
-	.dhxform_obj_dhx_skyblue.dhxform_rtl fieldset.dhxform_fs {
-		clear: right;
-	}
 
 .dhxform_obj_dhx_skyblue div.disabled fieldset.dhxform_fs {
 	border: #c2d0dd 1px solid;
@@ -226,6 +230,7 @@
 	font-size: inherit;
 	font-weight: normal;
 	padding: 0px 4px 1px 4px;
+	margin-left: 5px;
 	text-align: left;
 }
 	.dhxform_obj_dhx_skyblue.dhxform_rtl fieldset.dhxform_fs legend.fs_legend {
@@ -234,7 +239,6 @@
 .dhxform_obj_dhx_skyblue div.disabled fieldset.dhxform_fs legend.fs_legend {
 	color: #b2b2b2;
 }
-
 
 /************************************************************************************************************************/
 /*	item node, label right												*/
