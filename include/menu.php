@@ -51,6 +51,7 @@ $web_page = new web_page("GSP Global Support Platform");
 $web_page->add_css("css/gsp.css");
 $web_page->add_css("ext/dhtmlx/css/dhtmlxtree.css");
 $web_page->add_css("ext/dhtmlx/css/dhtmlxform_dhx_skyblue.css");
+$web_page->add_css("css/dhtmlx_form_block_padding.css");
 
 $web_page->add_meta("Content-Script-Type","text/javascript");
 

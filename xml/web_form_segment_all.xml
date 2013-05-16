@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <items>
-<item type="block" inputWidth="auto">
+<item type="block" inputWidth="auto" className="no_padding">
 	<item type="settings" position="label-left" labelWidth="120" inputWidth="180"/>
 	<item type="fieldset" name="dat1" inputWidth="auto" label="Application">
-		<item type="block" inputWidth="auto">
+		<item type="block" inputWidth="auto" className="no_padding">
 			<item type="hidden" name="SEL_APPL_ID"/>
 			<item type="input" value="" name="SEL_APPL_CODE" label="Code" readonly="true"/>
 			<item type="input" value="" name="SEL_APPL_DESC" inputWidth="260" label="Description" readonly="true"/>
 		</item>
-		<item type="block" inputWidth="auto">
+		<item type="block" inputWidth="auto" className="no_padding">
 			<item type="label" label="" labelWidth="330"/>
 			<item type="newcolumn"/>
 			<item type="button" name="assign_appl" value="---->" width="48"/>
@@ -17,7 +17,7 @@
 	</item>
 	<item type="newcolumn"/>
 	<item type="fieldset" name="dat2" inputWidth="auto" label="Gérer un segment applicatif">
-		<item type="block" inputWidth="auto">
+		<item type="block" inputWidth="auto" className="no_padding">
 			<item type="hidden" name="id"/>
 			<item type="input" value="" validate="NotEmpty" inputWidth="100" name="code" label="Code"/>
 			<item type="input" value="" validate="NotEmpty" inputWidth="260" name="description" label="Description"/>
@@ -25,32 +25,32 @@
 			<item type="input" value="" name="APPL_CODE" label="Application" readonly="true"/>
 			<item type="select" value="" name="parent_id" label="Segment Parent"/>
 		</item>
-		<item type="block" inputWidth="auto">
+		<item type="block" inputWidth="auto" className="no_padding">
 			<item type="label" label="En production"/>
 			<item type="newcolumn"/>
                         <item type="radio" name="prod_f" value="0" inputWidth="auto" labelWidth="40" label="Non"/>
 			<item type="newcolumn"/>
                         <item type="radio" name="prod_f" value="1" inputWidth="auto" labelWidth="40" checked="true" label="Oui"/>
 		</item>
-		<item type="block" inputWidth="auto">
+		<item type="block" inputWidth="auto" className="no_padding">
 			<item type="label" label="Supporté"/>
 			<item type="newcolumn"/>
                         <item type="radio" name="supported_f" value="0" inputWidth="auto" labelWidth="40" label="Non"/>
 			<item type="newcolumn"/>
                         <item type="radio" name="supported_f" value="1" inputWidth="auto" labelWidth="40" checked="true" label="Oui"/>
 		</item>
-		<item type="block" inputWidth="auto">
+		<item type="block" inputWidth="auto" className="no_padding">
 			<item type="label" label="Par défaut"/>
 			<item type="newcolumn"/>
                         <item type="radio" name="default_f" value="0" inputWidth="auto" labelWidth="40" checked="true" label="Non"/>
 			<item type="newcolumn"/>
                         <item type="radio" name="default_f" value="1" inputWidth="auto" labelWidth="40" label="Oui"/>
 		</item>
-		<item type="block" inputWidth="auto">
+		<item type="block" inputWidth="auto" className="no_padding">
 			<item type="input" value="1" inputWidth="50" name="rank_n" label="Rang"/>
 			<item type="select" value="" name="type_dict_id" label="Type"/>
 		</item>
-		<item type="block" inputWidth="auto">
+		<item type="block" inputWidth="auto" className="no_padding">
 			<item type="button" name="display_table" value="Afficher la table"/>
 			<item type="newcolumn"/>
 			<item type="button" name="edit" value="Modifier"/>
