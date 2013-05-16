@@ -2,7 +2,7 @@ CREATE TRIGGER trg_del_contact BEFORE DELETE ON contact FOR EACH ROW
 BEGIN
 	SELECT RAISE(ROLLBACK, 'Cannot delete : contact is referenced in table event')
 	WHERE (SELECT id FROM event WHERE contact_id = OLD.id) IS NOT NULL
-	   or (SELECT id FROM event WHERE   owner_id = OLD.id) IS NOT NULL;
+	   or (SELECT e.id FROM event e, user u WHERE e.owner_id = u.id and u.contact_id = OLD.id) IS NOT NULL;
 
 	SELECT RAISE(ROLLBACK, 'Cannot delete : contact is referenced in table event_history')
 	WHERE (SELECT id FROM event_history WHERE contact_id = OLD.id) IS NOT NULL;
