@@ -34,7 +34,14 @@ class segment
 
 	function display_data()
 	{
-		$this->web_page->add_html('
+		if ($_REQUEST[AFFICHE] != "" ) 
+		{
+			$this->web_page->add_html(return_table($this->db,"SELECT * from segment_vw;"));
+			$this->web_page->add_html("<center><a href='index.php?MODL=$_REQUEST[MODL]' title='RETOUR'><img src='pict/back.png' border=0 alt='RETOUR'></a></center>");
+		}
+		else
+		{
+			$this->web_page->add_html('
 <table>
 <tr>
         <td valign="top" class="TDW200">
@@ -65,15 +72,10 @@ class segment
         $this->web_page->add_html('</td>
 </tr>
 <tr>
-        <td colspan="3">');
-	
-	if ($_REQUEST[AFFICHE] != "" ) display_table($this->db,"SELECT * from segment_vw;");
-
-        $this->web_page->add_html('</td>
+        <td colspan="3"></td>
 </tr>
 </table>');
-
-
+		}
 		$this->web_page->render();
 	    	return "On affiche les actions disponibles"; 
 	}
