@@ -9,10 +9,11 @@ if ($_REQUEST[ACTION] == "Sauvegarder" && $_POST[code] != "")
 	if ($_POST[group_dict_id] != "")
 	{
 		$_POST=utf8_array_decode($_POST);
-        	$query="INSERT into contact (code, name, group_dict_id, active_f, phone, mobile, email, url) VALUES (:CODE,:NAME,:GROUP_ID,:ACTIF,:PHONE, :MOBILE, :EMAIL,:URL)";
+        	$query="INSERT into contact (code, name, language_dict_id, group_dict_id, active_f, phone, mobile, email, url) VALUES (:CODE,:NAME,:LANG_ID,:GROUP_ID,:ACTIF,:PHONE, :MOBILE, :EMAIL,:URL)";
 		$row = $db->prepare($query);
 		$row->bindParam(':CODE', $_POST[code], PDO::PARAM_STR);
 		$row->bindParam(':NAME', $_POST[name], PDO::PARAM_STR);
+		$row->bindParam(':LANG_ID', $_POST[language_dict_id], PDO::PARAM_INT);
 		$row->bindParam(':GROUP_ID', $_POST[group_dict_id], PDO::PARAM_INT);
 		$row->bindParam(':ACTIF', $_POST[active_f], PDO::PARAM_INT);
 		$row->bindParam(':PHONE', $_POST[phone], PDO::PARAM_STR);
@@ -31,12 +32,13 @@ if ($_REQUEST[ACTION] == "Sauvegarder" && $_POST[code] != "")
 if ($_REQUEST[ACTION] == "Valider" && $_POST[id] != "" && $_POST[code] != "")
 {
 	$_POST=utf8_array_decode($_POST);
-	$query="UPDATE contact set code = :CODE, name = :NAME, group_dict_id = :GROUP_ID, active_f = :ACTIF, 
+	$query="UPDATE contact set code = :CODE, name = :NAME, language_dict_id = :LANG_ID, group_dict_id = :GROUP_ID, active_f = :ACTIF, 
 	                           phone = :PHONE, mobile = :MOBILE, email = :EMAIL, url = :URL where id = :ID";
 	$row = $db->prepare($query);
 	$row->bindParam(':ID', $_POST[id], PDO::PARAM_INT);
 	$row->bindParam(':CODE', $_POST[code], PDO::PARAM_STR);
 	$row->bindParam(':NAME', $_POST[name], PDO::PARAM_STR);
+	$row->bindParam(':LANG_ID', $_POST[language_dict_id], PDO::PARAM_INT);
 	$row->bindParam(':GROUP_ID', $_POST[group_dict_id], PDO::PARAM_INT);
 	$row->bindParam(':ACTIF', $_POST[active_f], PDO::PARAM_INT);
 	$row->bindParam(':PHONE', $_POST[phone], PDO::PARAM_STR);
@@ -101,6 +103,7 @@ function fill_subform(id)
 		form.setItemValue('id',id.substring(3,id.length));
                 form.setItemValue('code',get_field(id,'code'));
                 form.setItemValue('name',get_field(id,'name'));
+		form.setItemValue('language_dict_id',get_field(id,'language_dict_id'));
                 form.setItemValue('group_dict_id',get_field(id,'group_dict_id'));
                 form.setItemValue('ORGA_GROUP_CODE',get_field(id,'group_code'));
                 form.setItemValue('ORGA_PARENT_CODE',get_field(id,'organisation_code'));
@@ -164,7 +167,10 @@ function delete_item_tree(ITEM_TO_DEL)
 	<td valign="top">
 <?
         $web_form = new web_form("contact","all");
+	$web_form->set_list_options("language_dict_id");
         $web_form->display();
+
+	echo return_query_webform_options($db, "language_dict_id", "", "select dict_id, code from dict_vw where parent_code = 'langue' and active_f = 1 order by rank_n");
 ?>
 	</td>
 </tr>

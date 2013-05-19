@@ -34,6 +34,7 @@ class module
 		case "JRNL":	$this->class="journal"; break;
 		case "CPWD":	$this->class="user"; break;
 		case "CBOX":	$this->class="inbox"; break;
+		case "SEGM":	$this->class="segment"; break;
                 default :       $this->error=true;echo "Module $this->code : classe inconnue\n<br>"; break;
             }
             
@@ -43,8 +44,10 @@ class module
 		case "display":		$this->display_data(); break;
 	        case "create":          $this->create_prepare(); break;
 		case "Sauvegarder":	$this->create_submit(); break;
+		case "Insï¿½rer":  	$this->create_submit(); break;
 		case "Modification":	$this->update_prepare(); break;
 		case "Valider":         $this->update_submit(); break;
+		case "Modifier":	$this->update_submit(); break;
 		case "Supprimer":	$this->delete(); break;
 		case "Installer":	$this->install(); break;
 		case "Activer":		$this->enable(); break;
@@ -67,7 +70,7 @@ class module
 	    	{
 	    		$class=new $this->class();
 
-            		if ($this->code != "STAT" && $this->code != "CPLG")
+            		if ($this->code != "STAT" && $this->code != "CPLG" && $this->code != "SEGM")
             		{
             			global $web_page;
             			$web_page->render();

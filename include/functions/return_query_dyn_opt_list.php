@@ -1,8 +1,8 @@
 <?
-function return_query_dyn_opt_list($form,$inputname,$db,$table,$criteria,$value,$text)
+function return_query_dyn_opt_list($form,$inputname,$db,$table,$criteria,$value,$text,$return=FALSE)
 {
 	$query="select distinct $criteria from $table";
-	echo "
+	$output="
 <script language='javascript'>
 function dynoptlist_$form" . "_$inputname(CRITERIA_ID)
 {
@@ -18,21 +18,30 @@ function dynoptlist_$form" . "_$inputname(CRITERIA_ID)
 	while ($result=$row->fetch(PDO::FETCH_NUM))
 	{
 		$countrows++;
-		echo "	case '$result[0]' : selbox.options[selbox.options.length] = new Option('','');";
+		$output.="	case '$result[0]' : selbox.options[selbox.options.length] = new Option('','');";
 		$subquery="select $value, $text from $table where $criteria = $result[0]";
 		$subrow = $db->prepare($subquery);
 		$subrow->execute();
 		while ($subresult=$subrow->fetch(PDO::FETCH_NUM))
 		{
-			echo "selbox.options[selbox.options.length] = new Option('$subresult[1]','$subresult[0]');";
+			$output.= "selbox.options[selbox.options.length] = new Option('$subresult[1]','$subresult[0]');";
 		}
-		echo "break\n	";
+		$output.= "break\n	";
 	}
 	
-        echo "	default : selbox.options[selbox.options.length] = new Option('','');
+        $output.= "	default : selbox.options[selbox.options.length] = new Option('','');
 	}
 }
 </script>";
+
+	if ($return)
+	{
+		return $output;
+	}
+	else
+	{
+		echo $output;
+	}
 
 }
 ?>
