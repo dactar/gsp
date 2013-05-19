@@ -49,6 +49,7 @@ $LOGTIME_START=date("d-m-Y H:i:s");
 $web_page = new web_page("GSP Global Support Platform");
 
 $web_page->add_css("css/gsp.css");
+$web_page->add_css("ext/dhtmlx/css/dhtmlxmessage_dhx_skyblue.css");
 $web_page->add_css("ext/dhtmlx/css/dhtmlxtree.css");
 $web_page->add_css("ext/dhtmlx/css/dhtmlxform_dhx_skyblue.css");
 $web_page->add_css("css/dhtmlx_form_block_padding.css");
@@ -61,6 +62,7 @@ if($_REQUEST[MODL] == "OPNE" && $_REQUEST[ACTION] != "getxml" && $_REQUEST[ACTIO
 if($_REQUEST[MODL] == "OPNM") { $RESULT=include("include/menu/main.php"); $LOGTIME_END=date("H:i:s"); writelog($LOGTIME_START,$LOGTIME_END,$_REQUEST[MODL],$USER,$RESULT); exit; }
 
 $web_page->add_jsfile("ext/dhtmlx/dhtmlxcommon.js");
+$web_page->add_jsfile("ext/dhtmlx/dhtmlxmessage.js");
 
 // Module Dispatcher
 
