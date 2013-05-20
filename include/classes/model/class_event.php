@@ -556,6 +556,13 @@ class event
 	    echo "</tr></table>";
 
 	    echo "<input type= 'submit' value='Sauver'>";
+
+
+	    $web_form = new web_form("event","create");
+	    $web_form->set_calendar();
+	    $web_form->set_editor("ckeditor");
+	    $web_form->display();
+
 	    return "on prÅpare la crÅation de l'événement";
 	}
 
