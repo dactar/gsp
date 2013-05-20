@@ -9,6 +9,7 @@ class web_form
 	public $opt_calendar;
 	public $opt_lang_calendar;
 	public $opt_freeze_calendar;
+	public $opt_editor;
 
 	public $output;
 	public $return;
@@ -27,6 +28,7 @@ class web_form
             $this->list_calendars = array();
 	    $this->opt_calendar = "";
 	    $this->opt_lang_calendar = "";
+	    $this->opt_editor = "";
 
 	    $this->return = $return;
         }
@@ -77,6 +79,14 @@ class web_form
             }
 	}
 
+	function set_editor($editor)
+	{
+	    if($editor=="ckeditor")
+	    {
+	    	$this->opt_editor="<script src='js/dhtmlxform_item_ckeditor.js'></script>\n";
+	    }
+	}
+
 	function display($id=0)
 	{
 	    if ($_REQUEST[MODL] == "OPNE")
@@ -105,6 +115,7 @@ padding:1px 5px;
 <div id='form' style='position:absolute;'></div>
 <script src='ext/dhtmlx/dhtmlxform.js'></script>
 $this->opt_calendar
+$this->opt_editor
 <script type='text/javascript'>
 function load_optlist()
 {";
