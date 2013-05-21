@@ -138,7 +138,7 @@ class segment
 	    	return "On met à jour le segment";
 	}
 
-	function delete_submit()
+	function delete()
 	{
 	    $query="DELETE from segment where id = :ID";
 	    $row = $this->db->prepare($query);
