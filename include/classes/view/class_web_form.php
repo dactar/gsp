@@ -114,6 +114,7 @@ padding:1px 5px;
 <div id='response'></div>
 <div id='form' style='position:absolute;'></div>
 <script src='ext/dhtmlx/dhtmlxform.js'></script>
+<script src='ext/dhtmlx/dhtmlxmessage.js'></script>
 $this->opt_calendar
 $this->opt_editor
 <script type='text/javascript'>
