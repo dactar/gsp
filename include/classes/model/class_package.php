@@ -2,6 +2,7 @@
 class package
 {
 	public $db;
+	public $web_page;
 	public $id;
 
 	function __tostring()
@@ -11,22 +12,75 @@ class package
 
 	function __construct()
 	{
-	    global $db;
-	    $this->db = $db;
+		global $db;
+		global $web_page;
+
+                $this->db = $db;
+                $this->web_page = $web_page;
 	}
 
 	function display_actions()
 	{
-	    	echo "
-	    	<input type='submit' name='AFFICHE' value='Afficher la table'></input>
-	    	<input type='submit' name='MODIFY' value='Modifier'></input>
-	    	<input type='submit' name='INSERT' value='Ins&eacute;rer'></input>
-	    	<input type='submit' name='DELETE' value='Supprimer'></input>";
+                $this->web_page->add_jsfile("ext/dhtmlx/dhtmlxcommon.js");
+                $this->web_page->add_jsfile("ext/dhtmlx/dhtmlxtree.js");
 
-	    	return "On affiche les actions disponibles"; 
+                $this->web_page->add_script(return_query_webform_options($this->db, "type_dict_id", "", "select dict_id, code from dict_vw where parent_code = 'packaging' and active_f = 1 order by rank_n",TRUE));
+                $this->web_page->add_script(return_query_dyn_opt_list(detpackage,PARENT_ID,$this->db,package,appl_dict_id,id,code,TRUE));
+                $this->web_page->add_script(return_dynamic_webform_options(detpackage,parent_id,$this->db,package,appl_dict_id,id,code,TRUE));
+
+                $this->web_page->add_jsfile("js/gsppackage.js");
+
 	}
 
-	function insert_submit()
+	function display_data()
+        {
+                if ($_REQUEST[AFFICHE] != "" )
+                {
+                        $this->web_page->add_html(return_table($this->db,"SELECT * from package_vw;"));
+                        $this->web_page->add_html("<center><a href='index.php?MODL=$_REQUEST[MODL]' title='RETOUR'><img src='pict/back.png' border=0 alt='RETOUR'></a></center>");
+                }
+                else
+                {
+                        $this->web_page->add_html('
+<table>
+<tr>
+        <td valign="top" class="TDW200">
+        <form action="">
+                <p>
+                <input type="button" value="-" onclick="javascript:tree.closeAllItems(0);"></input>
+                <input type="button" value="+" onclick="javascript:tree.openAllItems(0);"></input>
+                </p>
+        </form>
+        </td>
+</tr>
+<tr>
+        <td valign="top">
+        <div id="package_treeID"></div>
+        <script>
+                        tree=new dhtmlXTreeObject("package_treeID","100%","100%",0);
+                        tree.setImagePath("ext/dhtmlx/imgs/");
+                        tree.setOnClickHandler(go_fill);
+                        tree.loadXML("index.php?MODL=GETX&TYPE=tree&OBJECT=package");
+        </script>
+        </td>
+        <td valign="top">');
+
+        $web_form = new web_form("package","all",TRUE);
+        $web_form->set_list_options("type_dict_id");
+        $this->web_page->add_html($web_form->display());
+
+        $this->web_page->add_html('</td>
+</tr>
+<tr>
+        <td colspan="3"></td>
+</tr>
+</table>');
+                }
+                $this->web_page->render();
+                return "On affiche les actions disponibles";
+        }
+
+	function create_submit()
 	{
 		$_POST=utf8_array_decode($_POST);
 		$query="INSERT into package (parent_id, appl_dict_id, code, description, rank_n, type_dict_id, prod_f, planif_d) VALUES (:PARENT_ID,:APPL_ID,:CODE,:DESCRIPTION,:RANK_N,:TYPE_ID,:PROD_F,:PLANIF_D)";
@@ -70,7 +124,7 @@ class package
 	    	return "On met à jour le package";
 	}
 
-	function delete_submit()
+	function delete()
 	{
 	    $query="DELETE from package where id = :ID";
 	    $row = $this->db->prepare($query);
