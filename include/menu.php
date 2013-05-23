@@ -36,7 +36,6 @@ $GSP_INBOX_DB_PATH=return_query($db,"select inbox_db_path from config_inbox wher
 $GSP_INBOX_DB_TABLE=return_query($db,"select inbox_db_table from config_inbox where default_f = 1 and active_f = 1");
 
 if ($_REQUEST[MODL] == "AUSR" && ($_REQUEST[ACTION] == "Sauvegarder" || $_REQUEST[ACTION] == "Valider" || $_REQUEST[ACTION] == "getxml")) {include("include/menu/user.php"); exit;}
-if ($_REQUEST[MODL] == "PACK" && ($_REQUEST[ACTION] == "Sauvegarder" || $_REQUEST[ACTION] == "Valider" || $_REQUEST[ACTION] == "Supprimer")) {include("include/menu/packaging.php"); exit;}
 if ($_REQUEST[MODL] == "CONT" && ($_REQUEST[ACTION] == "Sauvegarder" || $_REQUEST[ACTION] == "Valider" || $_REQUEST[ACTION] == "Supprimer")) {include("include/menu/contact.php"); exit;}
 if ($_REQUEST[MODL] == "DICT" && ($_REQUEST[ACTION] == "Sauvegarder" || $_REQUEST[ACTION] == "Valider" || $_REQUEST[ACTION] == "Supprimer")) {include("include/menu/dict.php"); exit;}
 
@@ -72,7 +71,7 @@ switch ($_REQUEST[MODL])
 	case "LOGI": include("include/menu/main.php"); break;		// Main page when Login
 	case "DICT": include("include/menu/dict.php"); break;		// Attributes administration
 	case "AUSR": include("include/menu/user.php"); break;		// Users administration
-	case "PACK": include("include/menu/packaging.php"); break;      // Packaging administration
+	case "PACK": new module("PACK","$_REQUEST[ACTION]"); break;      // Packaging administration
 	case "SEGM": new module("SEGM","$_REQUEST[ACTION]"); break;     // Segmentation administration
 	case "CONT": include("include/menu/contact.php"); break;	// Contacts administration
 	case "EVNT": include("include/menu/event.php"); break;		// Events management
